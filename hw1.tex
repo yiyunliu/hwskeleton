@@ -19,7 +19,127 @@
 \maketitle
 \lstset{basicstyle=\ttfamily}
 
-\section*{Problem 2}
+\section*{Extra 1}
+Let $h(x)=\int_{-\infty}^{\infty}f(x,y)dy$. Then we have:\\
+\begin{equation} \label{eq1}
+  \begin{split}
+    \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)dxdy
+    &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)dydx \\
+    &= \int_{-\infty}^{\infty}h(x)dx\\
+    &= \int_{0}^{\infty}h(x)dx + \int_{-\infty}^{0}h(x)dx 
+  \end{split}
+\end{equation}
+When $x\leq 0$, $f(x,y)=0$, since there is no $y$ such that's between $0$ and $x$. Therefore, $h(x)=\int_{-\infty}^{\infty}0dy=0$ when $x\leq 0$, $\int_{-\infty}^{0}h(x)dx=0$.\\
+When $x\geq 0$, $h(x)=\int_{0}^{x}f(x,y)dy + \int_{x}^{\infty}f(x,y)dy=\int_{0}^{x}\frac{g(x)}{x}dy+0=x \cdot \frac{g(x)}{x} = g(x)$.\\
+Substitute the two expressions into \ref{eq1}, we get:\\
+\begin{equation*}
+  \begin{split}
+    \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)dxdy
+    &= \int_{0}^{\infty}g(x)dx + 0\\
+    &= 1 + 0\\
+    &= 1
+  \end{split}
+\end{equation*}
+
+\section*{Extra 2}
+The set of all eigenvalues equals the set $\{\lambda \mid det(A - \lambda I)= 0\}$. This is the same as saying the $\lambda$s that would make $A-\lambda I$ linearly dependent. I'll do some operations that preserve the determinant.\\
+
+Let $b_{ij}$ index the entries of $A-\lambda I$.
+\begin{equation*}
+b_{ij}=
+\begin{cases}
+  1-\frac{1}{n}-\lambda, & \text{if $i=j$}.\\
+  -\frac{1}{n}, & \text{if $i \neq j$}
+\end{cases}
+\end{equation*}
+
+Add $2$ to $n$th row to the first row, and now each entry of the first row equals $(n-1)\cdot -\frac{1}{n} + 1- \frac{1}{n}-\lambda=-\lambda$. The calculation is valid since each column contains $1$ element on diagonal plus $n-1$ identical non-diagonal elements.\\
+
+If we set $\lambda$ to $0$, the first row contains only $0$, which clearly makes the matrix linearly dependent.\\
+
+If $\lambda \neq 0$, we can add to each row (except first one) $-\frac{1}{\lambda n}$. This operation effectively make those rows contain only $0$, except the entries on the diagonal. Each of the diagonal entries now equals $(-\lambda)\cdot-\frac{1}{\lambda n} + 1 - \frac{1}{n} - \lambda = 1-\lambda$. If $1-\lambda$ is non-zero, the matrix has pivot in each column, and therefore linearly independent (note we are still assuming $\lambda \neq 0$). When $\lambda = 1$, however, every row except the first one consists of only $0$. When $n > 1$, there exists at least one row that is $0$, making the matrix linearly dependent. In the special case where $n=1$, however, the matrix we obtained has one single entry $-\lambda$ where $-\lambda \neq 0$.\\
+
+Thus, when $n = 1$, $\lambda = 0$. When $n > 1$, $\lambda = 1$ or $0$
+
+\section*{Page 15 - 17}
+Note: I use infix notation for permutation. The operator's precedence is higher than multiplication. The semantic of combination/permutation is clear enough to express my thought process, so I omitted the redundant text explanations unless necessary.
+
+\begin{itemize}
+\item[1.]
+  \begin{enumerate}[label=(\alph*)]
+  \item $26^2\cdot 10^5$
+  \item $(26P2)\cdot(10P5)$
+  \end{enumerate}
+\item [2.]
+  \begin{enumerate}[label=(\alph*)]
+  \item $6^4$
+  \end{enumerate}
+\item [7.]
+  \begin{enumerate}[label=(\alph*)]
+  \item $6P6$
+  \item $2\cdot(3P3\cdot3P3)$. Boys on left or right.
+  \item $4\cdot(3P3\cdot3P3)$. 4 possible seats for first boy.
+  \item $2\cdot(3P3\cdot3P3)$. Boy first or girl first.
+  \end{enumerate}
+\item [13.] ${20}\choose{2}$
+\item [24.] Apply binomial theorem:
+  \[\sum_{i=0}^{5}({5\choose i} {(3x^2)}^{i}y^{5-i})=
+  {{y}^{5}}+15 {{x}^{2}}\, {{y}^{4}}+90 {{x}^{4}}\, {{y}^{3}}+270 {{x}^{6}}\, {{y}^{2}}+405 {{x}^{8}} y+243 {{x}^{10}}\]
+The actual expansion clearly can't be done manually in a timely manner. Here's the maxima code used to produce it: \lstinline|sum(combination(5,i)*(3*x^2)^i*y^(5-i),i,0,5),simp;|
+\item [26.]
+  \begin{equation*}
+    \begin{split}
+      (x_1+2x_2+3x_3)^4 &=
+      \Sigma_{i+j+k=4}{4 \choose i,j,k}(x_1)^i(2x_2)^j(3x_3)^k\\
+      &=81 {{x_3}^{4}}+216 x_2\, {{x_3}^{3}}+108 x_1\, {{x_3}^{3}}+216 {{x_2}^{2}}\, {{x_3}^{2}}+216 x_1 x_2\, {{x_3}^{2}}+ 54 {{x_1}^{2}}\, {{x_3}^{2}}+ 96 {{x_2}^{3}} x_3+ \\& 144 x_1\, {{x_2}^{2}} x_3+72 {{x_1}^{2}} x_2 x_3+ 12 {{x_1}^{3}} x_3+16 {{x_2}^{4}}+32 x_1\, {{x_2}^{3}}+24 {{x_1}^{2}}\, {{x_2}^{2}}+8 {{x_1}^{3}} x_2+{{x_1}^{4}}
+\end{split}
+\end{equation*}
+  Code:
+\begin{lstlisting}
+sum(sum(combination3(4,i,j)*x^i*(2*y)^j*(3*z)^(4-i-j),j,0,4-i),i,0,4),simp;
+\end{lstlisting}
+
+\item [27.] ${12\choose3,4,5}=27720$
+
+
+\end{itemize}
+
+\section*{Page 17 - 18}
+\begin{itemize}
+\item [8.]
+  I did a combinatorial proof since I can't find an easy way to do it analytically.
+  \begin{proof}
+    Suppose we have a group of objects of size $n$ and another group of objects of size $m$. If we mix the objects together and select $r$ elements from the pile, each selection can be classified by how many elements were picked from the $n$-element group. If we picked $i$ elements from the first group, then we automatically picked $r-i$ elements from second group. The number of combinations that contains $i$ elements from $n$-element group can thus be computed by ${n \choose i} \cdot {n \choose r-i}$, where $i$ is quantified from $0$ to $r$, inclusive.\\
+    
+    The family of combinations parameterized by $i$ clearly forms a partition of the set of all combinations. We have already computed the cardinality for each element above, and thus the equality:
+    \[{n+m \choose r}=\sum_{i=0}^{r}{n \choose i} \cdot {n \choose r-i}\]
+  \end{proof}
+\item [9.]
+  \begin{proof}
+This is a special case of previous problem, where $m=n$:
+  \begin{equation*}
+    \begin{split}
+      {n+n \choose n} &= \sum_{i=0}^{n}{n \choose i} {n \choose n-i}\\
+      &= \sum_{i=0}^{n}{n \choose i} {n \choose i}\\
+      &= \sum_{i=0}^{n}{n \choose i}^{2}
+    \end{split}
+  \end{equation*}
+\end{proof}
+
+\item [13.]
+  \begin{proof}
+Apply binomial theorem with $-1$ and $1$:
+  \begin{equation*}
+    \begin{split}
+      0 = (-1+1)^n &= \sum_{i=0}^{n}{n \choose i}(-1)^i\cdot 1 ^{n-i}\\
+      &= \sum_{i=0}^{n}{n \choose i}(-1)^i\\
+      &= \sum_{i=0}^{n}(-1)^i{n \choose i}
+    \end{split}
+  \end{equation*}
+\end{proof}
+
+\end{itemize}
+
 
 
 
