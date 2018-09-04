@@ -21,7 +21,7 @@
 \maketitle
 \lstset{basicstyle=\ttfamily}
 
-\section*{A}
+\section*{Appendix A}
 \begin{itemize}
 \item [4.] Rewrite in standard notation, and our goal is to prove
   \[-(ab^{-1})=(-a)b^{-1}=a(-b)^{-1}\]
@@ -108,5 +108,29 @@
       \end{equation*}
     \end{description}
   \end{proof}
+\item [7.]
+  \begin{enumerate}[label=\alph*.]
+  \item
+    \begin{proof}
+      Suppose the negation holds. That is, there exists such $r \in
+      \mathbb{Q}$ and $c \in \mathbb{R}-\mathbb{Q}$. Then we have $p
+      \in \mathbb{Z}$, $q \in \mathbb{Z}-\{0\}$ such that $r =
+      \frac{p}{q}$ (it should be obvious what $p$ and $q$ belongs to
+      and that they're closed under certain operations. I'll omit
+      those later to be concise).
+      Since $r+c$ is rational, we have $r+c =
+      \frac{p}{q}+c=\frac{p'}{q'}$ for some $p'$, $q'$.\\
+      Subtracting $r$ to the other side and we get $c =
+      \frac{qp'-q'p}{qq'}$. Clearly the numerator and denominator are
+      both integers (the denominator being non-zero).\\
+      $c$ is rational. Contradiction.
+    \end{proof}
+
+  \end{enumerate}
+\item Suppose the negation holds. Then there exists rational $r=\frac{p}{q}$
+  and irrational $c$ such that $rc = \frac{p'}{q'}$ for some $p'$,
+  $q'$.
+  $c=\frac{qp'}{pq'}$ where $qp'$ is integer and $pq'$ is a non-zero
+  integer. $c$ is rational. Contradiction.
 \end{itemize}
 \end{document}
