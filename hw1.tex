@@ -15,12 +15,98 @@
 \usepackage{nameref}
 \usepackage{systeme}
 \usepackage{enumitem}
+% For \mathbb{R}, real number symbol
+\usepackage{amssymb}
 \begin{document}
 \maketitle
 \lstset{basicstyle=\ttfamily}
 
-\section*{Problem 2}
+\section*{A}
+\begin{itemize}
+\item [4.] Rewrite in standard notation, and our goal is to prove
+  \[-(ab^{-1})=(-a)b^{-1}=a(-b)^{-1}\]
+  \begin{proof}
+    \begin{equation*}
+      \begin{split}
+        ab^{-1}+(-a)b^{-1}
+        &= b^{-1}a + b^{-1}(-a) \textbf{ (Commutativity)} \\
+        &= b^{-1}(a+(-a)) \textbf{ (Distributivity)}\\
+        &= b^{-1}\cdot 0 \textbf{ (Definition of inverse)}\\
+        &= 0 \textbf{ (Proposition A.1)}
+      \end{split}
+    \end{equation*}
+    Therefore $-(ab^{-1})=(-a)b^{-1}$, by the fact that additive
+    inverse is unique.\\
+    \begin{equation*}
+      \begin{split}
+        ab^{-1}+a(-b)^{-1}
+        &= a(b^{-1}+(-b)^{-1}) \textbf{ (Distributivity)}\\
+        &= a(b^{-1} -(b^{-1})) \textbf{ (Proposition A.4 ii)}\\
+        &= a\cdot 0\\
+        &= 0 \textbf{ (Proposition A.1)}
+      \end{split}
+    \end{equation*}
+  \end{proof}
+  Therefore $a(-b)^{-1}=-(ab^{-1})$.\\
+  By transitivity of $=$, \(-(ab^{-1})=(-a)b^{-1}=a(-b)^{-1}\)
+\end{itemize}
 
+\section*{Chapter 1}
+\begin{itemize}
+\item [1.]
+  \begin{enumerate}[label=\alph*.]
+  \item false. $1 \notin \mathbb{R}-\mathbb{Q}$
+  \item false. Since the set is inductive, $\mathbb{N}$ has to be a
+    subset of it by definition. $2\in \mathbb{N}$ but there is no $x
+    \in \mathbb{Q}$ such that $x^2=2$. Contradiction.
+  \item false. $\sqrt{2},-\sqrt{2} \in \mathbb{R}-\mathbb{Q}$ but
+    $\sqrt{2}-\sqrt{2}=0\in\mathbb{Q}$
+  \item $\sqrt{2}\in \mathbb{R}-\mathbb{Q}$ but
+    $\sqrt{2}\cdot\sqrt{2}=2\in \mathbb{Q}$
+  \item true.
+    \begin{proof}
+      Assume the negation holds.
+      There exists $n$ such that $n^2$ is odd but $n$ is even.
+      $n^2 = 2k$ for some $k \in \mathbb{Z}$,
+      $n^2=4k^2=2\cdot(2k^2)$. $n$ is even. Contradiction\\
+    \end{proof}
+  \end{enumerate}
+\item [2.]
+  \begin{enumerate}[label=\alph*]
+  \item false. $sup$ not necessarily belongs to the set, e.g. $(0,1)$.
+  \item true. $0$ is a lower bound of $S$. By definition $0 \leq
+    \inf{S}$
+  \item true. Clearly, $\sup{S}$ is an upper bound of $B$, then by
+    definition $\sup{B} \leq \sup{S}$.
+  \end{enumerate}
 
-
+\item [5.]
+  Our goal is to prove $\forall n
+  \sum_{i=1}^{n}i^3=(\sum_{i=1}^ni)^2$.
+  \begin{proof}
+    \begin{description}
+    \item[Base case]
+      When $n=1$
+      \[LHS=\sum_{i=1}^1i^3=1\]
+      \[RHS=(\sum_{i=1}^1i)^2=1^2=1\]
+      $LHS=RHS$, the proposition holds.
+    \item[Inductive case]
+      Suppose the proposition holds for $P(n)$ where $n\geq 1$. 
+      \begin{equation*}
+        \begin{split}
+          \sum_{i=1}^{n+1}i^3
+          &= (\sum_{i=1}^{n}i^3) + (n+1)^3\\
+          &= (\sum_{i=1}^{n}i)^2 + (n+1)^3 \textbf{ (Inductive
+            hypothesis)}\\ 
+          &= (\frac{n(n+1)}{2})^2 + (n+1)^3 \textbf{ (Example 1.1)}\\
+          &= \frac{n^2(n+1)^2}{4} + (n+1)^3\\
+          &= \frac{(n+1)^2(n^2+4(n+1))}{4}\\
+          &= \frac{(n+1)^2(n+2)^2}{4}\\
+          &= (\frac{(n+1)((n+1)+1)}{2})^2\\
+          &= (\sum_{i=1}^{n+1}i)^2
+        \end{split}
+      \end{equation*}
+    \end{description}
+  \end{proof}
+\end{itemize}
 \end{document}
