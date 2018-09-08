@@ -1,0 +1,208 @@
+\documentclass{article}
+\title{HW 2}
+\date{2018/09/07}
+\author{Yiyun Liu}
+\usepackage{proof}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{diagbox}
+\usepackage[a4paper,total={6in,8in}]{geometry}
+% For \mathbb{R} or \mathbb{Q}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{nameref}
+\usepackage{systeme}
+\usepackage{enumitem}
+\begin{document}
+\maketitle
+\lstset{basicstyle=\ttfamily}
+
+\section*{Page 48 - 51}
+\begin{itemize}
+\item [8.]
+  \begin{enumerate}[label=(\alph*)]
+  \item \(P(A \cup B) = P(A)+P(B)=0.3+0.5=0.8\)
+  \item \(P(A - B) = P(A) = 0.3\)
+  \item \(P(AB)=P(\emptyset)=0\)
+  \end{enumerate}
+\item [11.]
+  Let $A$ be the event of an American smoking cigarettes, $B$ smoking
+  cigars.
+  \begin{enumerate}[label=(\alph*)]
+  \item $P(A^CB^C)=P((A\cup B)^C)=1-P(A\cup B)=1-(P(A)+P(B)-P(AB))=1-(0.28+0.07-0.05)=0.7$
+  \item $P(A^CB)=P(A\cup B) - P(A) = 0.3 - 0.28 = 0.02$
+  \end{enumerate}
+\item [16.]
+  \begin{enumerate}[label=(\alph*)]
+  \item $(6P5)/6^5$
+  \item ${5 \choose 2}{6 \choose 1}(5P3)/6^5$
+  \item ${5 \choose 2}{3 \choose 2}{6 \choose 2}{4 \choose 1} / 6^5$
+  \item ${5 \choose 3}{6 \choose 1}(5P2)/6^5$
+  \item $(6P2){5 \choose 3}/6^5$
+  \item $(6P2){5 \choose 4}/6^5$
+  \item ${6 \choose 1}/6^5$
+  \end{enumerate}
+\item [18.]
+  ${4 \choose 1}{16 \choose 1}/ {52 \choose 2}=32/663\approx 0.0483$
+\item [23.]
+  $\sum_{i=1}^{6}(6-i) = 6\cdot6 - (1+6)\cdot6/2 = 15$
+  $15/6^2 \approx 0.417$
+\item [24.]
+  I leave the fraction unsimplified so it is easier to verify that
+  they sum up to $1$.\\
+  \begin{tabular}{c | c}
+    $i$ & P \\
+    \hline
+    2 & 1/36 \\
+    3 & 2/36 \\
+    4 & 3/36 \\
+    5 & 4/36 \\
+    6 & 5/36 \\
+    7 & 6/36 \\
+    8 & 5/36 \\
+    9 & 4/36 \\
+    10 & 3/36 \\
+    11 & 2/36 \\
+    12 & 1/36
+  \end{tabular}
+\item [25.]
+  $P(E_n)= (1-4/36-6/36)^{n-1}(4/36) = (13/18)^{n-1}/9$.
+  Since $E_n$ is a sequence of disjoint sets,
+  $P(\bigcup_{n=1}^{\infty}E_n)=\sum_{n=1}^{\infty}P(E_n)$ by axiom 3.
+\item [31.]
+  \begin{enumerate}[label=(\alph*)]
+  \item $(3P3)/3^3=6/27=2/9$
+  \item $3/3^3=3/27=1/9$
+  \end{enumerate}
+\item [36.]
+  \begin{enumerate}[label=(\alph*)]
+  \item ${13 \choose 2}/{52 \choose 2} = 1/17$
+  \item $13 \cdot {4 \choose 2} / {52 \choose 2} = 1/17$
+  \end{enumerate}
+\item [38.]
+  ${3 \choose 2}/{n \choose 2} = 1/2$. Solving the equation, we get
+  $n=4$. Since it's not linear, I have no idea if it's unique.
+\item [41.]
+  $1-5^4/6^4=\approx 0.518$
+\item [44.]
+  \begin{enumerate}[label=(\alph*)]
+  \item $3\cdot(3P3)\cdot(2P2)/(5P5) = 36/120 = 3/10$
+  \item $2\cdot(3P3)\cdot(2P2)/(5P5) = 24/120 = 1/5$
+  \item $(3P3)\cdot(2P2)/(5P5) = 12/120=1/10$
+  \end{enumerate}
+\item [49.]
+  ${6 \choose 3}{6 \choose 3}/2/{12 \choose 6} = 50/231 \approx 0.216$
+\item [53.]
+  
+\item [55.]
+  \begin{enumerate}[label=(\alph*)]
+  \item $/{52 \choose 13}$
+  \end{enumerate}
+
+
+\end{itemize}
+
+\section*{Page 52 - 53}
+\begin{itemize}
+\item [5.]
+  \begin{equation*}
+    F_i=\begin{cases}
+      E_1 & \text{if $i=1$}\\
+      E_i - \bigcup_{1}^{i-1}F_j & \text{otherwise}
+    \end{cases}
+  \end{equation*}
+  By intuition there definitely is a least fix point $F$ that
+satisfies the above equation, and thus $F$ is well-defined.
+  
+  We claim that sequence $F_i$ satisfies the required properties.
+  \begin{proof}
+    When $n=1$, by recursive definition, the properties trivially
+    holds.
+
+    When $n\geq 1$, we show that the property holds for $n+1$,
+    by assuming it holds for $n$.
+    
+    \begin{equation*}
+      \begin{split}
+        \bigcup_{1}^{n+1}F_j
+        &= \bigcup_{1}^{n}F_j \cup F_{n+1} \\
+        &= \bigcup_{1}^{n}F_j \cup (E_{n+1} - \bigcup_{0}^{n}F_j)\\
+        &= \bigcup_{1}^{n}F_j \cup E_{n+1}\\
+        &= \bigcup_{1}^{n}E_j \cup E_{n+1}\\
+        &= \bigcup_{1}^{n+1}E_j
+      \end{split}
+    \end{equation*}
+
+    Since $F_1$ to $F_n$ are already disjoint, we only need to show
+    that $F_{n+1}$ is disjoint with any $F_i$ such that $i\neq n+1$.
+
+    Suppose $x \in F_i$ for $i \neq
+    n+1$, and suppose $x \in F_{n+1}$. By definition of $F_{n+1}$, $x
+    \in E_n-\bigcup_{1}^{n}F_j$. Therefore, $x \notin
+    \bigcup_{1}^{n}F_j$, which simply says that $x$ doesn't belong to
+    any $F_j$ when $i$ is between $1$ and $n$. $x \notin F_i$. Contradiction.
+  \end{proof}
+\item [10.]
+  I remember the following fact was proved in class, but just in case:
+  \begin{equation*}
+    \begin{split}
+      P(E \cup F \cup G)
+      &= P ((E \cup F) \cup G) \\
+      &= P(E \cup F) + P(G) - P((E\cup F) G)\\
+      &= P(E) + P(F) - P(EF) + P(G) - P(EG \cup FG) \\
+      &= P(E) + P(F) + P(G) - P(EF) - (P(EG) + P(FG) - P(EFG))\\
+      &= P(E) + P(F) + P(G) - P(EF) - P(EG) - P(FG) + P(EFG)\\
+    \end{split}
+  \end{equation*}
+
+  Therefore, to prove the statement, we only need to show the
+  equality:
+  \begin{equation*}
+     - P(EF) - P(EG) - P(FG) + P(EFG) =  - P(E^CFG) - P(EF^CG) -
+     P(EFG^C) - 2P(EFG)
+  \end{equation*}
+  holds.
+
+  \begin{equation*}
+    \begin{split}
+      &- P(EF) - P(EG) - P(FG) + P(EFG) + P(E^CFG) + P(EF^CG) +
+      P(EFG^C) + 2P(EFG) \\
+      &= (P(EFG) + P(E^CFG) - P(FG)) + (P(EFG) + P(EF^CG) - P(EG)) +
+      (P(EFG) + P(EFG^C)-P(EF))\\
+      &= (P(FG)-P(FG)) + (P(EG)-P(EG)) + (P(EF)-P(EF))\\
+      &= 0
+    \end{split}
+  \end{equation*}
+  Moving  terms on the right of $P(EFG)$ to right-hand-side of $=$
+  completes the proof.
+\item [11.]
+  \begin{proof}
+    I'll just jump to the general case.
+
+    $P(E) + P(F) -P(EF) = P(E\cup F) \leq 1$. The less than $1$ part
+    is directly from axiom.
+
+    Moving $P(EF)$ to right and $1$ to left, we get
+    $P(EF) \geq P(E)+P(F)-1$
+  \end{proof}
+\item [12.]
+  \begin{equation*}
+    \begin{split}
+      P((E\cup F) - EF)  + P(EF)
+      &= P(((E \cup F) - EF) \cup EF)\\
+      &= P(E \cup F)\\
+      &= P(E) + P(F) - P(EF)
+    \end{split}
+\end{equation*}
+Moving the first $P(EF)$ to the right-hand side of $=$:
+$P((E\cup F) - EF) = P(E) + P(F) - 2P(EF)$
+
+\end{itemize}
+
+
+
+\end{document}
