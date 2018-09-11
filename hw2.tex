@@ -1,0 +1,97 @@
+\documentclass{article}
+\title{HW 2}
+\date{2018/09/06}
+\author{Yiyun Liu}
+\usepackage{proof}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{diagbox}
+\usepackage[a4paper,total={6in,8in}]{geometry}
+% For \mathbb{R} or \mathbb{Q}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{nameref}
+\usepackage{systeme}
+\usepackage{enumitem}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\maketitle
+\lstset{basicstyle=\ttfamily}
+
+\section*{Ex 5}
+Note: \textbf{I use $e$ as if it's polymorphic. It should be clear which set it
+belongs to based on context}.
+\begin{itemize}
+\item [20.]
+  % Do as a diagram project
+\item [22.]
+  $\{
+  \begin{bmatrix}
+    0 & -1 \\
+    -1 & 0
+  \end{bmatrix},
+  \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+  \end{bmatrix}
+\}$
+\item [41.]
+  The proof heavily relies on $Theorem 5.14$.
+  \begin{description}
+  \item [Closed]
+    Let $a,b \in \Phi[H]$. Then we have $a = \Phi(h)$, $b=\Phi(h')$
+    for some $h,h' \in H$. $ab = \Phi(h)\Phi(h')=\Phi(hh') \in
+    H$. $hh' \in H$ is true, by Theorem 5.14.
+  \item [Identity]
+        This can be done by showing that $\Phi(e)$is the identity
+        element.
+
+        $e$ of $G$ is in $H$ by Theorem 5.14.
+        Let $a \in \Phi[H]$, then $a = \Phi(h)$ for some $h \in H$. $a
+        \Phi(e) = \Phi(he) = \Phi(h) = a$.
+  \item [Inverse]
+    Let $a \in \Phi[H]$. $a=\Phi(h)$ for some $h\in H$. $H$ is a
+    subgroup, so we have $h^{-1}$ by Theorem 5.14. Let $b=\Phi(h^{-1})$, then we get $ab
+    = \Phi(h)\Phi(h^{-1}) = e$, $ba=\Phi(h^{-1})\Phi(h)=\Phi(e)=e$
+  \end{description}
+  By Theorem 5.14, since the above three properties hold, $\Phi(H)$ is
+  a subgroup of $G'$.
+\end{itemize}
+
+\section*{Ex 6}
+\begin{itemize}
+\item [17.] $\{0,5,10,15,20,25\}$
+\item [20.] Let $a = \frac{1+i}{\sqrt{2}}$.
+  $a^2=i$, $a^3=\frac{i-1}{\sqrt{2}}$, $a^4=-1$,
+  $a^5=\frac{-1-i}{\sqrt{2}}$, $a^5=\frac{-1-i}{\sqrt{2}}$, $a^6=-i$,
+  $a^7=\frac{-i+1}{\sqrt{2}}$, $a^8=1$. The number of elements is $8$.
+\item [56.]
+  \begin{enumerate}[label=\alph*.]
+  \item
+    \begin{proof}
+      Let $a$ and $b$ each be the generator of $H$ and $K$.  We claim
+      that $S=<ab>$ is a cyclic subgroup of order $rs$.
+
+    \begin{lemma}
+      $c= a^m = b^n \rightarrow c = e$
+    \end{lemma}
+    \begin{proof}
+      By Theorem 6.14,
+      $ord(c)$ is a divisor of $r$ and $s$. Therefore $ord(c)$ has to
+      be $1$ because otherwise $r$ and $s$ will have a common divisor
+      greater than $1$, which contradicts the premiss that $r$ and $s$
+      are relatively prime, and hence $c=e$.
+    \end{proof}
+    Suppose $(ab)^m = e$. Since the group is abelian, we can rewrite
+    it as $a^m = b^{-m}$. By Lemma 1, $a^m=b^{-m}=e$. Since $ord(a)=r$
+    and $ord(b)=s$, $r$ and $s$ both divides $m$. $gcd(r,s)=1$,
+    $rs$ divides $m$, and thus $ord(ab)=rs$
+  \end{proof}
+  \end{enumerate}
+\end{itemize}
+
+\end{document}
