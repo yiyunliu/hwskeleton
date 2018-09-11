@@ -27,7 +27,7 @@ Note: \textbf{I use $e$ as if it's polymorphic. It should be clear which set it
 belongs to based on context}.
 \begin{itemize}
 \item [20.]
-  % Do as a diagram project
+  On page 3. Handwritten.
 \item [22.]
   $\{
   \begin{bmatrix}
@@ -64,11 +64,13 @@ belongs to based on context}.
 
 \section*{Ex 6}
 \begin{itemize}
-\item [17.] $\{0,5,10,15,20,25\}$
+\item [17.] $\{0,5,10,15,20,25\}$. It has $6$ elements.
 \item [20.] Let $a = \frac{1+i}{\sqrt{2}}$.
   $a^2=i$, $a^3=\frac{i-1}{\sqrt{2}}$, $a^4=-1$,
   $a^5=\frac{-1-i}{\sqrt{2}}$, $a^5=\frac{-1-i}{\sqrt{2}}$, $a^6=-i$,
   $a^7=\frac{-i+1}{\sqrt{2}}$, $a^8=1$. The number of elements is $8$.
+\item [23.]
+  On Page 4. Handwritten.
 \item [56.]
   \begin{enumerate}[label=\alph*.]
   \item
@@ -86,12 +88,39 @@ belongs to based on context}.
       greater than $1$, which contradicts the premiss that $r$ and $s$
       are relatively prime, and hence $c=e$.
     \end{proof}
-    Suppose $(ab)^m = e$. Since the group is abelian, we can rewrite
+    Suppose $(ab)^m = e$, and we'll see $m$ is a multiple of $rs$. Since the group is abelian, we can rewrite
     it as $a^m = b^{-m}$. By Lemma 1, $a^m=b^{-m}=e$. Since $ord(a)=r$
-    and $ord(b)=s$, $r$ and $s$ both divides $m$. $gcd(r,s)=1$,
-    $rs$ divides $m$, and thus $ord(ab)=rs$
+    and $ord(b)=s$, $r$ and $s$ both divides $m$. Because $gcd(r,s)=1$,
+    we have $rs$ divides $m$, and thus $ord(ab)=rs$.
+
   \end{proof}
   \end{enumerate}
+\end{itemize}
+
+\section*{Extra}
+Definition copy/pasted from last homework:
+\begin{itemize}
+\item $o$: identity
+\item $a$: clockwise 90 degrees
+\item $b$: counter-clockwise 90 degrees
+\item $c$: rotation 180 degrees
+\item $d$: horizontal flip
+\item $e$: top-left bottom-right flip
+\item $f$: top-right bottom-left flip
+\item $g$: vertical flip
+\end{itemize}
+Subgroups:
+\begin{itemize}
+\item $\{o,a,b,c,d,e,f,g\}$
+\item $\{o,a,b,c\}$
+\item $\{o,c,d,g\}$
+\item $\{o,c,e,f\}$
+\item $\{o,c\}$
+\item $\{o,d\}$
+\item $\{o,e\}$
+\item $\{o,f\}$
+\item $\{o,g\}$
+\item$\{o\}$  
 \end{itemize}
 
 \end{document}
