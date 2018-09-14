@@ -1,0 +1,324 @@
+\documentclass{article}
+\title{HW 2}
+\date{2018/09/13}
+\author{Yiyun Liu}
+\usepackage{proof}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{diagbox}
+\usepackage[a4paper,total={6in,8in}]{geometry}
+% For \mathbb{R} or \mathbb{Q}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{nameref}
+\usepackage{systeme}
+\usepackage{enumitem}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+
+
+\lstset{ 
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  % numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+\begin{document}
+\maketitle
+\lstset{basicstyle=\ttfamily}
+For many of the exercises, the computations were done with GNU
+Octave. I'll put the code here as proof of work.
+\section*{Exercise 2.2}
+\begin{lstlisting}
+>> M = [0.3157 0.947; 0.6314 0.1263]
+>> [v,lambda] = eig(M)
+v =
+
+   0.81052  -0.73496
+   0.58571   0.67811
+
+lambda =
+
+Diagonal Matrix
+
+   1.00004         0
+         0  -0.55804
+>> v(:,1)
+ans =
+   0.81052
+   0.58571
+\end{lstlisting}
+
+We are looking for the eigenvectors corresponding to the eigenvalue
+$1$. Those vectors are solutions of the equation $Mp=p$ since $d=0$.
+
+The octave code shows that $
+\begin{pmatrix}
+  0.81052\\
+  0.58571
+\end{pmatrix}
+$ is one of such vector. In fact, multiply this vector with any
+non-zero scalar gives us another vector which satisfies the same
+equation. For example, the vector: $
+\begin{pmatrix}
+  1.6210\\
+  1.1714
+\end{pmatrix}
+$
+
+\section*{Exercise 2.5}
+First, we set up the consumption matrix and the external demand vector.
+\begin{lstlisting}
+>> M = [0.22 0.16; 0.15 0.26]
+M =
+
+   0.22000   0.16000
+   0.15000   0.26000
+
+>> d = [120 150]'
+d =
+
+   120
+   150
+\end{lstlisting}
+\begin{enumerate}[label=(\alph*)]
+\item
+\begin{lstlisting}
+>> p = (eye(2)-M)^(-1)*d
+p =
+
+   203.90
+   244.03
+
+>> ceil(p)
+ans =
+
+   204
+   245
+\end{lstlisting}
+  $ceil(p)$ is for the case where products are atomic and cannot be
+  divided below $1$.
+\item
+\begin{lstlisting}
+>> p - d
+ans =
+
+   83.905
+   94.035
+
+>> ceil(p-d)
+ans =
+
+   84
+   95
+\end{lstlisting}
+  Internal demand is lower than external demand, which means it is
+  relatively efficient (at least more efficient than the example given
+  in textbook). 
+\item
+\begin{lstlisting}
+M = 0.1 * M
+M =
+
+   0.022000   0.016000
+   0.015000   0.026000
+
+>> p = (eye(2)-M)^(-1)*d
+p =
+
+   125.25
+   155.93
+
+>> ceil(p)
+ans =
+
+   126
+   156
+
+>> p - d
+ans =
+
+   5.2504
+   5.9330
+
+>> ceil(p - d)
+ans =
+
+   6
+   6
+\end{lstlisting}
+Much more efficient than the previous case. The internal demand is way
+lower than external demand.
+\item
+\begin{lstlisting}
+>> (eye(2)-M)^(-1)
+ans =
+
+   1.33767   0.28923
+   0.27115   1.40998
+\end{lstlisting}
+  If external demand of product $1$ increase by $1$, the
+  production of product $1$ increase by $1.33767$; if external demand
+  of product $2$ increase by $1$, the production of product $1$
+  increase by $0.28923$.
+\end{enumerate}
+
+\section*{Exercise 2.9}
+\begin{lstlisting}
+>> M = [0.1 0.06; 0.05 0.12]
+M =
+
+   0.100000   0.060000
+   0.050000   0.120000
+
+>> eye(2) + M
+ans =
+
+   1.100000   0.060000
+   0.050000   1.120000
+
+>> eye(2) + M + M^2
+ans =
+
+   1.113000   0.073200
+   0.061000   1.137400
+
+>> eye(2) + M + M^2 + M^3
+ans =
+
+   1.114960   0.075564
+   0.062970   1.140148
+
+>> eye(2) + M + M^2 + M^3 + M^4
+ans =
+
+   1.115274   0.075965
+   0.063304   1.140596
+
+>> eye(2) + M + M^2 + M^3 + M^4 + M^5
+ans =
+
+   1.115326   0.076032
+   0.063360   1.140670
+
+>> eye(2) + M + M^2 + M^3 + M^4 + M^5 + M^6
+ans =
+
+   1.115334   0.076043
+   0.063370   1.140682
+\end{lstlisting}
+\begin{enumerate}[label=(\alph*)]
+\item $i=6$. 
+\item \(
+    \begin{pmatrix}
+   1.115334 &   0.076043 \\
+   0.063370  & 1.140682
+    \end{pmatrix}
+\)
+\item $(I-M)^{-1} \approx     \begin{pmatrix}
+   1.115334 &   0.076043 \\
+   0.063370  & 1.140682
+    \end{pmatrix}$
+\end{enumerate}
+
+\section*{Exercise 2.17}
+\begin{enumerate}[label=(\alph*)]
+\item Use the equality $M = - (((I-M)^{-1})^{-1}-I)$.
+\item
+\begin{lstlisting}
+>> IM = [1.06 0.02 0.04; 0.02 1.06 0.09; 0.11 0.02 1.03]
+IM =
+
+   1.060000   0.020000   0.040000
+   0.020000   1.060000   0.090000
+   0.110000   0.020000   1.030000
+
+>> M = -((IM^(-1))-eye(3))M =
+
+   0.0526171   0.0172093   0.0352878
+   0.0093000   0.0548769   0.0822224
+   0.1009962   0.0165140   0.0237611
+\end{lstlisting}
+\end{enumerate}
+
+\section*{Exercise 2.19}
+
+\begin{enumerate}[label=(\alph*)]
+\item $M =
+\begin{pmatrix}
+  0.1 & x \\
+  0.2 & 0.05
+\end{pmatrix}
+$\\
+$I-M =
+\begin{pmatrix}
+  0.9 & 1-x \\
+  0.8 & 0.95
+\end{pmatrix}
+$
+
+In order for the equation $(I-M)p = d$ to have solution for arbitrary
+$d$, we need $I-M$ to be invertible. Therefore, we need $det(I-M) \neq
+0$.
+\begin{equation}
+  \begin{split}
+    det(I-M)
+    &= 0.9 \cdot 0.95 - (1-x)\cdot 0.8 \\
+    &= 0.055 + 0.8x
+  \end{split}
+\end{equation}
+Since $x$ is always non-negative, $det(I-M)$ is never $0$, and hence
+any non-negative $x$ would give solution to arbitrary $d$.
+\item $M =
+\begin{pmatrix}
+  0.1 & x \\
+  y & 0.05
+\end{pmatrix}
+$\\
+$I-M =
+\begin{pmatrix}
+  0.9 & 1-x \\
+  1-y & 0.95
+\end{pmatrix}
+$
+
+Simplify the inequality, we get:
+$det(I-M)= -x y+y+x-0.145 \neq 0$.
+Of course, $x$ and $y$ also need to satisfy the implicit constraint
+that both are non-negative.
+\end{enumerate}
+
+
+
+\end{document}
+
+
