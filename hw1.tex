@@ -64,9 +64,141 @@
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
+\section*{Exercises 2.1}
+\begin{itemize}
+\item [1.]
+  \begin{enumerate}[label=\alph*.]
+  \item false. Witness: $a_n = (-1)^n$
+  \item false. $a_n = (-1)^n$, $b_n = (-1)^{n+1}$. $a_n+b_n = 0$
+  \item Suppose $\{a_n+b_n\}$ converges to $p$, and $\{a_n\}$
+    converges to $q$. We claim that $b_n$ converges to $p-q$.
+    \begin{proof}
+      Let $\epsilon > 0$. By the premiss, we have some $N_0$ such that
+      $n \geq N_0 \rightarrow |a_n+b_n - p| < \frac{\epsilon}{2}$,
+      $N_1$ such that $n\geq N_1 \rightarrow |a_n-q| <
+      \frac{\epsilon}{2}$.
+      Let $N = max(N_0,N_1)$, so both inequalities are satisfied when
+      $n \geq N$.
+      Adding those two inequalities together, and we get:
+      \( |b_n - (p-q)| \leq |a_n+b_n - p| + |q - a_n| = |a_n+b_n - p|
+      + |a_n - q| \leq \frac{\epsilon}{2} + \frac{\epsilon}{2}  = e
+      \) (note the triangle inequality applied on the left-hand side).
+    \end{proof}
+  \item false. $a_n = (-1)^n$. $|a_n| = 1$. The latter converges, but
+    the former doesn't.
+  \end{enumerate}
+\item [8.]
+  \begin{proof}
+    First, we show that ``if'' part. Suppose $\epsilon>0$. We know
+    that $\{c_n - c\}$ converges to $0$, and thus there exists $N$
+    such that $n \geq N \rightarrow |c_n-c-0| = |c_n-c| < 0 $. Now, we
+    found an $N$ such that $|c_n-c|<0$ for this arbitrary $\epsilon$,
+    and hence $c_n$ converges to $c$.
 
-\section*{Problem 2}
+    The ``only if'' part is very similar. Suppose $\epsilon>0$, then
+    we have $|c_n-c|<\epsilon$ when $n \geq N$ for some $N$. We want
+    to show that $|(c_n-c)-0| < \epsilon$, and this is clearly true
+    since $|(c_n-c)-0|=|c_n-c|<\epsilon$, with the $N$ we just found.
+  \end{proof}
+\item [11.]
+  \begin{enumerate}[label=\alph*.]
+  \item Pick $\epsilon=100$, $N=1000$, and $a=1$. By this definition,
+    $\{\frac{1}{n}\}$ ``converges'' to $1$, since clearly
+    $|\frac{1}{n}-1| < 100$ for all indices $n \geq 1000$.
+  \item By this definition, $\{\frac{1}{n}\}$ doesn't ``converge'' to
+    $0$. Let $\epsilon = 0.01$ and $N=1$. Since $n \geq N = 1$, we can
+    pick $n=1$. Clearly, $|\frac{1}{n} - 0| = \frac{1}{n} = 1 \nless
+    \epsilon = 0.01$. 
+  \item There is no such $N$ that satisfies this condition, which
+    means by this definition, $\{\frac{1}{n}\}$ doesn't converge to
+    $0$. For each $N$, we can always pick $\epsilon =
+    \frac{1}{N+1}$. Since $n\geq N$, we can just pick $n=N$, and that
+    actually fails the definition. $|\frac{1}{n}-0| = \frac{1}{n} =
+    \frac{1}{N} \nless \epsilon = \frac{1}{N+1}$
+  \end{enumerate}
+\item [14.]
+  \begin{proof}
+    \begin{equation*}
+      \begin{split}
+        s_n &= (1-\frac{1}{2}) + (\frac{1}{2} - \frac{1}{3}) + ... +
+        (\frac{1}{n}-\frac{1}{n+1})\\
+        &= 1 - \frac{1}{n+1}
+      \end{split}
+    \end{equation*}
+    The following top-down approach isn't logically sound, because it
+    assumes the existence of the limit already. While we could avoid the
+    problem by building the limits of subterms and put them together,
+    I do it top-down for simplicity.
 
+    \begin{equation*}
+      \begin{split}
+        \lim_{n\rightarrow \infty}a_n &= \lim_{n \rightarrow \infty} (1-\frac{1}{n+1})\\
+        &= 1 - \lim_{n \rightarrow \infty}\frac{1}{n+1}\\
+        &= 1 - 0\\
+        &= 1
+      \end{split}
+    \end{equation*}
+    As for why $\frac{1}{n+1}$ converges to $0$, that's because it is
+a subsequence of $\frac{1}{n}$. I don't remember the theorem being
+shown in class, but it can be easily proved with the definition of peak terms.
+  \end{proof}
+\item [16.]
+  \begin{enumerate}[label=\alph*.]
+  \item $\sqrt{n+1}-\sqrt{n} = \frac{1}{\sqrt{n+1}+\sqrt{n}}$. It
+    converges to $0$.
+  \item
+    \begin{equation*}
+      \begin{split}
+        (\sqrt{n+1}-\sqrt{n})\sqrt{n} &=
+        \frac{\sqrt{n}}{\sqrt{n+1}+\sqrt{n}}\\
+        &= \frac{1}{\sqrt{1+\frac{1}{n}}+1}
+      \end{split}
+    \end{equation*}
+    It converges to $\frac{1}{2}$
+  \item
+    \begin{equation*}
+      \begin{split}
+        (\sqrt{n+1}-\sqrt{n})n
+        &= \frac{n}{\sqrt{n+1}+\sqrt{n}}\\
+        &= \frac{1}{\sqrt{\frac{1}{n}+\frac{1}{n^2}} + \sqrt{\frac{1}{n}}}
+      \end{split}
+    \end{equation*}
+    Doesn't converge. Goes to $\infty$.
+  \end{enumerate}
+\item [18.]
+  
+\end{itemize}
+
+
+
+\section*{Exercises 2.2}
+\begin{enumerate}
+\item
+  \begin{enumerate}[label=\alph*.]
+  \item false. $a_n = (-1)^{n}$
+  \item false. $a_n = \frac{1}{n}$. All positive, but limit is $0$, which isn't positive.
+  \item false. $\{n^2+1\}$ is not bounded. By Theorem 2.18, it does not converge.
+  \item false. The sequence $\{3,3.1,3.14,3.141,3.1415,...\}$ converges to $\pi$ and contains only rational numbers. 
+  \item false. $\{\frac{1}{n}\}$ belongs to $(0,2)$ but its limit is $0$.
+  \end{enumerate}
+\item
+  \begin{proof}
+    Suppsoe $a_n$ is in $(-\infty,0]$, and $\lim_{n\rightarrow \infty}a_n = b$
+    
+    $\lim_{n \rightarrow \infty}[-a_n] = - \lim_{n \rightarrow \infty}a_n = -b$.
+    Since $a_n$ is in $(-\infty,0]$, it is obvious that $-a_n$ is in $[0,\infty)$. By Lemma 2.21, $-b \geq 0$, and hence $b \in (-\infty,0]$.
+\end{proof}
+\item
+  \begin{proof}
+    By Proposition 2.19, the goal is equivalent to the statement that the set of irrational numbers are dense. However, this statement has already been proved in Corollary 1.10.
+  \end{proof}
+\item
+  \begin{proof}
+    The sequence $a_n = \frac{\pi}{n}$ converges to a rational number $0$. While $a_n$ is in the set of irrational number, its limit is not.
+  \end{proof}
+
+
+\end{enumerate}
 
 
 \end{document}
