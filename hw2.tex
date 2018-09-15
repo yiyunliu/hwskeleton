@@ -20,6 +20,11 @@
 \usepackage{color}
 % For radio table
 \usepackage{comment}
+% For theorems
+\usepackage{amsthm}
+
+\newtheorem{lemma}{Lemma}
+
 
 \begin{document}
 \maketitle
@@ -191,13 +196,136 @@
     \begin{split}
       P(A_2 \mid A_1^C)
       &= \frac{P(A_2A_1^C)}{P(A_1^C)}\\
-      &= \frac{P(A_2)}{}
+      &= \frac{P(A_2A_1^CA)+P(A_2A_1^CA^C)}{1-0.26}\\
+      &= \frac{P(A_2 \mid A)\cdot P(A_1^C \mid A) \cdot P(A) +  P(A_2 \mid A^C)\cdot P(A_1^C \mid A^C) \cdot P(A^C)}{0.74}\\
+      &= \frac{0.4 \cdot 0.6 \cdot 0.3 + 0.2 \cdot 0.8 \cdot 0.7}{0.74}\\
+      &\approx 0.2486
+    \end{split}
+  \end{equation*}
+\item [55.]
+  $A$ = First year\\
+  $B$ = Girl\\
+  \begin{equation*}    \begin{split}
+      P(A)\cdot P(B) &= P(AB)\\
+      \frac{10}{16+x}\cdot \frac{6+x}{16+x} &= \frac{6}{16+x}\\
+      60 + 10x &= 96+6x\\
+      x &= 9
+    \end{split}
+\end{equation*}
+
+\item [76.]
+  \begin{proof}
+  $Q_i$ = $E$ occurs before $F$ and $E$ first occurs on $i$th trial.\\
+  Clearly, events in $(Q_i)_{i \in \mathbb{N}^*}$ are mutually exclusive.\\
+  $Q_i$ is very easy to compute:
+  \begin{equation*}
+    \begin{split}
+      P(Q_i) = (1-P(E)-P(F))^{i-1} \cdot P(E)
     \end{split}
   \end{equation*}
 
   
+  By the probability axiom:
+  \begin{equation*}
+    \begin{split}
+      P(\bigcup_{i=1}^{n} Q_i) &= \sum_{i=1}^{n} P(Q_i)\\
+      &= P(E)\sum_{i=1}^{n} (1-P(E)-P(F))^{i-1}\\
+      &= P(E) \cdot \frac{1-(1-P(E)-P(F))^n}{1-(1-P(E)-P(F))}\\
+      &= \frac{P(E)}{P(E)+P(F)} - \frac{P(E)}{P(E)+P(F)} \cdot (1-P(E)-P(F))^n
+\end{split}
+\end{equation*}
+Since $|1-P(E)-P(F)| < 1$ (it can't be equal to $1$ because otherwise $\frac{P(E)}{P(E)+P(F)}$ is not defined),
+the partial sum converges to $\frac{P(E)}{P(E)+P(F)} - 0 = \frac{P(E)}{P(E)+P(F)}$
+\end{proof}
+
 \end{itemize}
 
+\section*{Page 106 - 109}
+\begin{itemize}
+\item [1.]
+  \begin{equation*}
+    \begin{split}
+      P(AB \mid A) &= \frac{P(ABA)}{P(A)}\\
+      &= \frac{P(AB)}{P(A)}
+    \end{split}
+  \end{equation*}
+
+  \begin{equation*}
+    \begin{split}
+      P(AB \mid A \cup B) &= \frac{P((AB)(A \cup B))}{P(A \cup B)}\\
+      &= \frac{P(AB)}{P(A \cup B)}
+    \end{split}
+  \end{equation*}
+  Because $A \subseteq A \cup B$, and $P$ is monotonic, $P(A) \leq P(A
+  \cup B)$. Therefore, $P(AB \mid A) \geq P(AB \mid A \cup B)$
+\item [6.]
+  Goal: $P(\bigcup_{i=1}^nE_i) = 1 - \prod_{i=1}^n [1- P(E_i)]$.
+  \begin{proof}
+    When $n=1$, $LHS=P(E_i) = 1- (1- P(E_i)) = P(E_i)$, \(RHS = 1-
+    (1-P(E_i)) = P(E_i)\). $LHS=RHS$.
+
+    To prove the inductive case, we need the following lemma:
+    \begin{lemma}
+      Let $E_i$ be a family of sets, where its members are mutually
+      independent. An event formed by taking the union of a finite
+      number of elements from $E_i$ is pairwise independent with
+      events in $E_i$.
+    \end{lemma}
+    The statement is not really strong since I'm not confident if
+    mutual independence still holds.
+    
+    The proof can be done with induction but is quite tedious, so I'll
+    show a simplified case of two elements below.
+
+    \begin{proof}
+      Let $E_i$ be a family of events. Let $S = E_i \cup E_j$ for
+      some $i$ and $j$.
+
+      If $S$ is in $E_i$ already, we're done. Otherwise, let $E_k$ be
+      an arbitrary member of the family of events.
+
+      \begin{equation*}
+        \begin{split}
+          P(E_i \cup E_j) \cdot P(E_k)
+          &= P(E_i)P(E_k)  + P(E_j)P(E_k) - P(E_iE_j)P(E_k)\\
+          &= P(E_i)P(E_k)  + P(E_j)P(E_k) - P(E_i)P(E_j)P(E_k) \\
+          &= P(E_i)P(E_k)  + P(E_j)P(E_k) - P((E_iE_k) (E_jE_k))\\
+          &= P((E_iE_k) \cup (E_jE_k))\\
+          &= P((E_i \cup E_j)E_k)
+        \end{split}
+      \end{equation*}
+      Therefore, $S$ is indeed pairwise independent with the elements
+      in $E_i$.
+    \end{proof}
+
+
+    Suppose the equation holds for some \(n \geq 1\).
+    \begin{equation*}
+      \begin{split}
+        P(\bigcup_{i=1}^{n+1}E_i) &= P((\bigcup_{i=1}^nE_i) \cup
+        E_{n+1})\\
+        &= P(\bigcup_{i=1}^{n}E_i) + P(E_{n+1}) -
+        P(\bigcup_{i=1}^{n}E_i) \cdot P(E_{n+1})\\
+        &= 1 - \prod_{i=1}^n (1-(P(E_i))) + P(E_{n+1}) -
+        (1-\prod_{i=1}^n(1-P(E_i)))P(E_{n+1})\\
+        &= 1 - (\prod_{i=1}^n(1-P(E_i)))(1-P(E_{n+1}))\\
+        & = 1 - \prod_{i=1}^{n+1} (1-P(E_i))
+      \end{split}
+    \end{equation*}
+    
+  \end{proof}
+\item [25.]
+  \begin{equation*}
+    \begin{split}
+      P(E \mid FG) P(G \mid F) 
+      &= \frac{P(EFG)}{P(FG)} \frac{P(FG)}{P(F)} +
+      \frac{P(EFG^C)}{P(FG^C)}\frac{P(G^CF)}{P(F)}\\
+      &= \frac{P(EFG)+P(EFG^C)}{P(F)}\\
+      &= \frac{P(EF)}{P(F)}\\
+      &= P(E\mid F)
+    \end{split}
+  \end{equation*}
+\end{itemize}
 
 
 \end{document}
