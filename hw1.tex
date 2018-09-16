@@ -1,5 +1,5 @@
 \documentclass{article}
-\title{HW 2}
+\title{HW 1}
 \date{2018/09/13}
 \author{Yiyun Liu}
 \usepackage{proof}
@@ -262,7 +262,8 @@ IM =
    0.020000   1.060000   0.090000
    0.110000   0.020000   1.030000
 
->> M = -((IM^(-1))-eye(3))M =
+>> M = -((IM^(-1))-eye(3))
+M =
 
    0.0526171   0.0172093   0.0352878
    0.0093000   0.0548769   0.0822224
@@ -281,23 +282,22 @@ IM =
 $\\
 $I-M =
 \begin{pmatrix}
-  0.9 & 1-x \\
-  0.8 & 0.95
+  0.9 & -x \\
+  -0.2 & 0.95
 \end{pmatrix}
 $
 
 In order for the equation $(I-M)p = d$ to have solution for arbitrary
 $d$, we need $I-M$ to be invertible. Therefore, we need $det(I-M) \neq
 0$.
-\begin{equation}
+\begin{equation*}
   \begin{split}
     det(I-M)
-    &= 0.9 \cdot 0.95 - (1-x)\cdot 0.8 \\
-    &= 0.055 + 0.8x
+    &= 0.9 \cdot 0.95 - 0.2x \\
+    &\neq 0
   \end{split}
-\end{equation}
-Since $x$ is always non-negative, $det(I-M)$ is never $0$, and hence
-any non-negative $x$ would give solution to arbitrary $d$.
+\end{equation*}
+Therefore, $x \neq 4.275$.
 \item $M =
 \begin{pmatrix}
   0.1 & x \\
@@ -306,13 +306,13 @@ any non-negative $x$ would give solution to arbitrary $d$.
 $\\
 $I-M =
 \begin{pmatrix}
-  0.9 & 1-x \\
-  1-y & 0.95
+  0.9 & -x \\
+  -y & 0.95
 \end{pmatrix}
 $
 
 Simplify the inequality, we get:
-$det(I-M)= -x y+y+x-0.145 \neq 0$.
+$det(I-M)= 0.855 - xy \neq 0$, $xy \neq 0.855$
 Of course, $x$ and $y$ also need to satisfy the implicit constraint
 that both are non-negative.
 \end{enumerate}
