@@ -1,6 +1,6 @@
 \documentclass{article}
-\title{HW 1}
-\date{2018/09/03}
+\title{HW 3}
+\date{2018/09/16}
 \author{Yiyun Liu}
 \usepackage{proof}
 \usepackage{hyperref}
@@ -166,7 +166,46 @@ shown in class, but it can be easily proved with the definition of peak terms.
     Doesn't converge. Goes to $\infty$.
   \end{enumerate}
 \item [18.]
+  \begin{proof}
+    \begin{equation*}
+    \begin{split}
+      |\frac{a_1+a_2+\ldots + a_n}{n} - a|
+      &= |\frac{(a_1-a)+(a_2-a)+\ldots+(a_n-a)}{n}|\\
+      & \leq \frac{|a_1-a|+|a_2-a|+\ldots +|a_n-a|}{n}\\
+    \end{split}
+  \end{equation*}
+  Let $\epsilon > 0$.
+  Because $a_n$ converges to $a$, there must exists some $p$ such that when $i > p$, $|a_i - p| < \frac{\epsilon}{2}$ (I use $>$ so it's easier to divide into two parts).
+
+  Now, we will only focus on $N$ that's greater than $p$.
+
+  We can rewrite $\sigma_n$ into two parts, by assuming $n$ is greater than $p$:
+  \[
+    \frac{|a_1-a|+|a_2-a|+\ldots +|a_p-a|}{n} + \frac{|a_{p+1}-a|+|a_{p+2}-a|+\ldots+|a_{n}-a|}{n}
+  \]
+
+  \begin{equation*}
+    \begin{split}
+      \frac{|a_{p+1}-a|+|a_{p+2}-a|+\cdots +|a_{n}-a|}{n}
+      & \leq \frac{\overbrace{\frac{\epsilon}{2}+\frac{\epsilon}{2}+\cdots+\frac{\epsilon}{2}}^{n-p}}{n} \\
+      & = \frac{n-p}{n} \frac{\epsilon}{2}\\
+      & < \frac{\epsilon}{2}
+    \end{split}
+  \end{equation*}
+  Since the number $p$ has already been introduced into the environment, the numerator on the left: $|a_1-a|+|a_2-a|+\cdots +|a_p-a|$, can be treated as a constant $c$. The subterm can be rewritten as $\frac{c}{n}$. It's quite obvious that there exists an $N_0$ such that $i \geq N_0 \rightarrow \frac{c}{n} < \frac{\epsilon}{2}$, because $\frac{c}{n}$ converges to $0$.
+
+  Let $N = \max(p,N_0)$. When $n \geq N$,
+  \begin{equation*}
+    \begin{split}
+      |\sigma_n - a|
+      &\leq \frac{|a_1-a|+|a_2-a|+\ldots +|a_p-a|}{n} + \frac{|a_{p+1}-a|+|a_{p+2}-a|+\ldots+|a_{n}-a|}{n}\\
+      &< \frac{\epsilon}{2} + \frac{\epsilon}{2}\\
+      &= \epsilon
+    \end{split}
+  \end{equation*}
   
+\end{proof}
+
 \end{itemize}
 
 
