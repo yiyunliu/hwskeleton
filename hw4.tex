@@ -1,0 +1,269 @@
+\documentclass{article}
+\title{HW 4}
+\date{2018/09/21}
+\author{Yiyun Liu}
+\usepackage{proof}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{diagbox}
+\usepackage[a4paper,total={6in,8in}]{geometry}
+% For \mathbb{R} or \mathbb{Q}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{nameref}
+\usepackage{systeme}
+\usepackage{enumitem}
+\usepackage{color}
+% For radio table
+\usepackage{comment}
+% For theorems
+\usepackage{amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+\lstset{basicstyle=\ttfamily}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+
+
+\lstset{ 
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  % numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+% \section*{Section 2.3}
+
+\begin{enumerate}
+\item
+  \begin{enumerate}[label=\alph*.]
+  \item true.
+    \begin{proof}
+      A sequence is just a function with type:
+      $\mathbb{N} \rightarrow \mathbb{R}$.  Suppose we have
+      \[a_n: \mathbb{N} \rightarrow \mathbb{R}\] and
+      \[n_k: \mathbb{N} \rightarrow \mathbb{N}\] A subsequence
+      $a_{n_{k}}=a_n \circ n_k$. $ran(a_{n_k}) \subseteq ran(a_n)
+      \subseteq [-M,M]$ for some $M$.
+    \end{proof}
+  \item true.
+    \begin{proof}
+      Continue the convention used in previous problem. $a_n$ is
+      monotone, and $n_k$ has to be monotone by
+      definition. Composition of monotone function gives us another
+      monotone function.
+    \end{proof}
+  \item true.
+    \begin{proof}
+      Suppose $a_n$'s limit is $a$.
+      For every $\epsilon$, there's an $N$ such that $n \geq N$
+      implies $|a_n - a| < \epsilon$. Use the same $N$ for $a_{n_k}$,
+      and clearly when $k \geq N$, $a_{n_k}$ the inequality $|a_{n_k}-a| <
+      \epsilon$ holds.
+    \end{proof}
+  \item false. $\{(-1)^n\}$ as counterexample.
+  \end{enumerate}
+\item
+  \begin{enumerate}[label=\alph*.]
+  \item true.
+    \begin{proof}
+      Given a sequence in $(0,1)$, we know it has to be bounded. By
+      Theorem 2.32 the sequence has a monotone subsequence. This
+      subsequence is bounded and monotone, so it converges, by
+      monotone convergence theorem.
+    \end{proof}
+      
+    \item false. $\{\frac{1}{n}\}$ converges to $0$.
+    \item false. $\{n\}$ is a sequence of rational numbers but it none
+      of its subsequences are bounded, and hence do not converge.
+      
+    \item true.
+      \begin{proof}
+        Suppose the statement is false. There exists a sequence $a_n$
+        such that $\lim_{n\rightarrow \infty}a_n = c < 0$. Then for
+        the positive number $-\frac{c}{2}$, there is an $N$ such that
+        $n \geq N \rightarrow |a_n - c| < -\frac{c}{2}$. This
+        inequality can be rewritten as $-\frac{3}{2}c < a_n <
+        \frac{c}{2} < 0$, but we know $a_n \geq 0$. Contradiction.
+      \end{proof}
+    \item false.
+      $\{n\}$ as a counterexample.
+  \end{enumerate}
+\item
+  \begin{enumerate}[label=\alph*.]
+  \item $1$. The sequence is strictly decreasing, so the first is the
+    greatest.
+  \item $2$. We can enumerate the range of the sequence:
+    $\{-1,1\}$. $1$ is the greatest value it can take, and the first
+    element that's equal to $1$ is the second element of the sequence.
+  \item Does not exist. Given any $a_n$, $a_n < a_{2n}$. 
+  \item $2$. First, we only consider even-labeled terms, because the
+    odd-numbered ones are always negative. The absolute value of the
+    sequence is decreasing, so the largest we can pick is the second.
+  \end{enumerate}
+\item
+  \begin{proof}
+    Suppose it does. $\exists n \forall k, k\geq n \rightarrow a_n
+    \geq a_k$.
+
+    Apply the fact with $k=n+1$: $a_n \geq a_{n+1}$. $a_n < a_{n+1}$
+    as given. Contradiction.
+  \end{proof}
+\item Goal: $\forall v \in \mathbb{N}, \forall k \in \mathbb{N}, k
+  \geq n \rightarrow a_k \leq a_n$.
+  \begin{proof}
+    Let $n \in \mathbb{N}$.
+
+    When $k=n$, $a_k = a_n$, and thus $a_k \leq a_n$.
+
+    When $k>n$, suppose the property holds for $k-1$.
+    $a_k \leq a_{k-1}$ since the sequence is monotone decreasing. By
+    inductive hypothesis, $a_{k-1} \leq a_n$. By transitivity of
+    $\leq$, $a_k \leq a_n$.
+  \end{proof}
+
+  The theorem of mathematical induciton only applies for the set of
+  natural numbers. The proof therefore glossed over some details
+  regarding induction. To be more rigorous, one can either prove the
+  generalized induction theorem for
+  the set $[k,\infty) \cap \mathbb{N}$ or rewrite $k$ as $k=n+s$ where
+  $s\geq 0$, and do induction on $s$. 
+
+  
+\item [12.]
+  \begin{proof}
+    I divide this into two cases so we'll get a stronger
+    hypothesis for induction. The proof does not reflect my thought
+    process. I focused more on formality than clarity.
+
+    When $x_1 \geq  \frac{1+\sqrt{1+4c}}{2}$, we claim that the
+    sequence is monotone and bounded below by
+    $\frac{1+\sqrt{1+4c}}{2}$.
+
+    First, we show that the sequence is bounded by
+    $\frac{1+\sqrt{1+4c}}{2}$, using induction.
+
+    To prove the base case, we need to show that $x_1 < x_2 = \sqrt{c
+      + x_1}$. The premiss tells us that $x_1 \geq
+    \frac{1+\sqrt{1+4c}}{2}$. We do the following transformations.
+    \begin{equation*}
+      \begin{split}
+        2x_1 &\geq 1+ \sqrt{1+4c}\\
+        2x_1 - 1 &\geq \sqrt{1+4c}\\
+        4x_1^2 - 4x_1  + 1 &\geq 1+4c\\
+        4x_1^2 - 4x_1 - 4c & \geq 0\\
+        x_1^2 - x_1 -c &\geq 0\\
+        x_1^2 &\geq x_1 + c\\
+        x_1 &\geq \sqrt{x_1+c} = x_2
+      \end{split}
+    \end{equation*}
+    The last step, which takes the square root of both sides, is valid
+    because the premiss guarantees both sides are positive and
+    $\lambda x. \sqrt{x}$ preserves order.
+
+    For the inductive case, we assume that the $x_n$ is bounded below
+    by $\frac{1+\sqrt{1+4c}}{2}$ for some $n \geq 1$. $x_{n+1} =
+    \sqrt{x+x_n} \geq \sqrt{\frac{1+\sqrt{1+4c}+2c}{2}}$, by inductive
+    hypothesis. To prove that $x_n$ is bounded below by that number,
+    we only need to show that $\sqrt{\frac{1+\sqrt{1+4c}+2c}{2}} \geq
+    \frac{1+\sqrt{1+4c}}{2}$. Since both sides are positive, it
+    suffices to show the squared version holds. This can be done by
+    subtracting them and show the result is $0$.
+
+    \begin{equation*}
+      \begin{split}
+        (\sqrt{\frac{1+\sqrt{1+4c}+2c}{2}})^2 -
+        (\frac{1+\sqrt{1+4c}}{2})^2 &= \frac{1 + \sqrt{1+4c}+2c}{2} -
+        \frac{1+1+4c+2\sqrt{1+4c}}{4}
+        \\
+        &= \frac{1 + \sqrt{1+4c}+2c}{2} - \frac{1 + \sqrt{1+4c}+2c}{2}\\
+        &= 0
+      \end{split}
+    \end{equation*}
+    and hence $x_{n+1} =
+    \sqrt{c+x_n} \geq \sqrt{\frac{1+\sqrt{1+4c}+2c}{2}} =
+    \frac{1+\sqrt{1+4c}}{2}$
+
+    Next, we show that $\{x_n\}$ is monotone decreasing.
+    Let $n \geq 1$. The following statements are implicitly connected
+    by $\rightarrow$, and the implication from the first to the second
+    statement uses the fact that the sequence is bounded below, which
+    we just proved.
+    \begin{equation*}
+      \begin{split}
+        x_{n} &\geq \frac{1+\sqrt{1+4c}}{2}\\
+        (2x_{n}-1)^2 &\geq 1 + 4c\\
+        4x_{n}^2 - 4x_{n} + 1 &\geq 1 + 4c\\
+        x_{n}^2-x_{n} -c &\geq 0\\
+        x_{n}^2 &\geq x_{n} + c\\
+        x_{n} &\geq \sqrt{x_{n} + c} = x_{n+1}
+      \end{split}
+    \end{equation*}
+
+    We have proved that the sequence is monotone and bounded (we have
+    only proved the sequence bounded below, but monotone decreasing
+    implies the sequence is bounded). Using the monotone convergence
+    theorem, we conclude the sequence converges.
+
+    To find which number it converges to, we use the equality:
+    $x_{n+1} = \sqrt{c + x_n}$
+
+    If we think of $\{x_{n+1}\}$ as a subsequence of $\{x_n\}$, they
+    converges to the same number.
+    \begin{equation*}
+      \begin{split}
+        \lim_{n \rightarrow \infty} x_{n} &= \lim_{n \rightarrow \infty}
+        x_{n+1}\\
+        &= \lim_{n \rightarrow \infty} \sqrt{c +x_n}\\
+        &= \sqrt{c + \lim_{n \rightarrow \infty}x_n}
+      \end{split}
+    \end{equation*}
+    Use the shorthand $x=\lim_{n \rightarrow \infty} x_{n}$. We just
+    obtained the equation: $a = \sqrt{c + a}$. Solving for $a$, we get
+    $a = \frac{1+\sqrt{1+4c}}{2}$. The negative solution can't be the
+    limit, because the set $[\frac{1+\sqrt{1+4c}}{2},\infty)$ in which
+    our sequence lives is closed.
+
+    
+    
+
+    The case where $x_1 \leq \frac{1+\sqrt{1+4c}}{2}$ is the dual of
+    the case of $\geq$. We simply flip all the order-related stuff,
+    and we get the same solution.
+  \end{proof}
+\end{enumerate}
+
+
+\end{document}
