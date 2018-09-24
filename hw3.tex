@@ -16,10 +16,23 @@
 \usepackage{listings}
 \usepackage{nameref}
 \usepackage{systeme}
+\usepackage{comment}
 \usepackage{enumitem}
 \begin{document}
 \maketitle
 \lstset{basicstyle=\ttfamily}
+
+\section*{Extra}
+We need to find all solutions for this equation:
+$ord(n)=\frac{48}{\gcd(48,n)}=8$, which is the same as $\gcd(48,n) =
+6$.
+
+The following perl6 one-liner finds the solutions easily:
+\begin{lstlisting}
+grep 1..48: * gcd 48 == 6
+\end{lstlisting}
+
+It gives $6,18,30,42$, which is exactly what we want.
 
 \section*{Exercises 6}
 \begin{itemize}
@@ -29,6 +42,8 @@
     \begin{proof}
       Suppose $a$ and $b$ are elements of some cyclic group $G$. We have $a=g^m$ and $b=g^n$ for some element $g$. $ab = g^{m+n} = g^{n+m}=ba$.
     \end{proof}
+    Every cyclic group is abelian, and for any finite order $n$, there
+    is a cyclic/abelian group $\mathbb{Z}_n$
   \item [f.] false\\
     \begin{tabular}{c | c c c c }
       $\cdot$&e&a&b&c\\
@@ -41,14 +56,15 @@
     The above group has order $4$ but not cyclic. 
   \item [g.] false.
     $1$ is a generator of $\mathbb{Z}_{20}$ but it's not a prime number.
-  \item [h.] false. The set $\{0\}$ and $\mathbb{Z}^*$ are both groups under $*$, but their intersection is not even a non-empty set.
+  \item [h.] false. The set $\{0\}$ and $\mathbb{Z}^*$ are both groups under multiplication, but their intersection is not even a non-empty set.
   \item [i.] true.
     \begin{proof}
       $e$ is clearly in $H \cap K$, since both $H$ and $K$ have neutral element inherited from $G$.
 
       Suppose $a \in H \cap K$ and $b \in H \cap K$. $a,b\in H$ and $a,b \in K$. Since the operation is closed under both $H$ and $K$, $ab \in H$ and $ab \in K$, and hence $ab \in H \cap K$.
 
-      Suppose $a \in H \cap K$. $a \in H$ and $a \in K$, and thus $a$ has an inverse of $a$ in $H$ and an inverse of $a$ in $K$. $H$ and $K$ are subgroups of $G$, so the two inverses are inverses of $a$ in $G$. Because we know inverse of $a$ is unique in $G$, the two inverses are equal. Let's call this element $b$. $b \in H \cap K$ and $b$ satisfies the properties for inverse of $a$. $a$ has an inverse in $H \cap K$.
+      Suppose $a \in H \cap K$. $a \in H$ and $a \in K$, and thus
+      there is an inverse of $a$ in $H$ and an inverse of $a$ in $K$. $H$ and $K$ are subgroups of $G$, so the two inverses are inverses of $a$ in $G$. Because we know inverse of $a$ is unique in $G$, the two inverses are equal. Let's call this element $b$. $b \in H \cap K$ and $b$ satisfies the properties for inverse of $a$. $a$ has an inverse in $H \cap K$.
     \end{proof}
   \item [j.] true.
     \begin{proof}
@@ -72,7 +88,16 @@
     \[\langle \rho_1 \rangle = \{\rho_0, \rho_1, \rho_2\}\]
     \[\langle \rho_2 \rangle = \{\rho_0, \rho_1, \rho_2\}\]
     \[\langle \mu_1 \rangle = \{\rho_0, \mu_1\}\]
-  \item Handwritten on second to last page.
+  \item Handwritten on the last page. It might seem like it
+    lacks proof of work, but with some nice theorems it can be done
+    without writing much down. First, with Langrange's Theroem, we
+    know the size of subsets could only be $1,2,3,6$. Second, we know
+    the subgroups form a lattice. We start with the cyclic subgroups and
+    the trivial subgroup. By taking the closure of the union of two
+    subgroups we already have, we form a new subgroup. The new
+    subgroup is usually easy to derive. For example, if
+    the new subgroup has at least $4$ elements, we can conclude it is
+    the improper subgroup. If we keep building 
   \end{enumerate}
 \item [20.]
   \begin{proof}
@@ -122,8 +147,40 @@
     As for why $S_3$ is not cyclic, one can tell from problem $18$, or
     by the simple observation that flip and rotation are not
     commutative and hence it's not even abelian.
-  \end{proof}
 
+  
+
+
+  \end{proof}
+    I probably
+    misinterpreted the question since the table is always trivial for a
+    cyclic group:
+    
+% BEGIN RECEIVE ORGTBL mul
+\begin{tabular}{l|llllll}
+\(\circ\) & \(\rho^0\) & \(\rho^1\) & \(\rho^2\) & \(\rho^3\) & \(\rho^4\) & \(\rho^5\)\\
+\hline
+\(\rho^0\) & \(\rho^0\) & \(\rho^1\) & \(\rho^2\) & \(\rho^3\) & \(\rho^4\) & \(\rho^5\)\\
+\(\rho^1\) & \(\rho^1\) & \(\rho^2\) & \(\rho^3\) & \(\rho^4\) & \(\rho^5\) & \(\rho^0\)\\
+\(\rho^2\) & \(\rho^2\) & \(\rho^3\) & \(\rho^4\) & \(\rho^5\) & \(\rho^0\) & \(\rho^1\)\\
+\(\rho^3\) & \(\rho^3\) & \(\rho^4\) & \(\rho^5\) & \(\rho^0\) & \(\rho^1\) & \(\rho^2\)\\
+\(\rho^4\) & \(\rho^4\) & \(\rho^5\) & \(\rho^0\) & \(\rho^1\) & \(\rho^2\) & \(\rho^3\)\\
+\(\rho^5\) & \(\rho^5\) & \(\rho^0\) & \(\rho^1\) & \(\rho^2\) & \(\rho^3\) & \(\rho^4\)\\
+\end{tabular}
+% END RECEIVE ORGTBL mul
+\begin{comment}
+#+ORGTBL: SEND  mul orgtbl-to-latex :splice nil :skip 0
+| $\circ$  | $\rho^0$ | $\rho^1$ | $\rho^2$ | $\rho^3$ | $\rho^4$ | $\rho^5$ |
+|----------+----------+----------+----------+----------+----------+----------|
+| /        | <        |          |          |          |          |          |
+| $\rho^0$ | $\rho^0$ | $\rho^1$ | $\rho^2$ | $\rho^3$ | $\rho^4$ | $\rho^5$ |
+| $\rho^1$ | $\rho^1$ | $\rho^2$ | $\rho^3$ | $\rho^4$ | $\rho^5$ | $\rho^0$ |
+| $\rho^2$ | $\rho^2$ | $\rho^3$ | $\rho^4$ | $\rho^5$ | $\rho^0$ | $\rho^1$ |
+| $\rho^3$ | $\rho^3$ | $\rho^4$ | $\rho^5$ | $\rho^0$ | $\rho^1$ | $\rho^2$ |
+| $\rho^4$ | $\rho^4$ | $\rho^5$ | $\rho^0$ | $\rho^1$ | $\rho^2$ | $\rho^3$ |
+| $\rho^5$ | $\rho^5$ | $\rho^0$ | $\rho^1$ | $\rho^2$ | $\rho^3$ | $\rho^4$ |
+
+\end{comment}
 \end{itemize}
 
 
