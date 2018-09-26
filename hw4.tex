@@ -5,6 +5,7 @@
 \usepackage{proof}
 \usepackage{hyperref}
 \usepackage{mathtools}
+\usepackage{cancel}
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{diagbox}
@@ -93,7 +94,8 @@
       and clearly when $k \geq N$, $a_{n_k}$ the inequality $|a_{n_k}-a| <
       \epsilon$ holds.
     \end{proof}
-  \item false. $\{(-1)^n\}$ as counterexample.
+  \item false. $\{(-1)^n\}$ as counterexample. The even-labeled
+    subsequence converges, but the sequence itself doesn't converge.
   \end{enumerate}
 \item
   \begin{enumerate}[label=\alph*.]
@@ -112,25 +114,30 @@
     \item true.
       \begin{proof}
         Suppose the statement is false. There exists a sequence $a_n$
+        in $[0,\infty)$
         such that $\lim_{n\rightarrow \infty}a_n = c < 0$. Then for
         the positive number $-\frac{c}{2}$, there is an $N$ such that
         $n \geq N \rightarrow |a_n - c| < -\frac{c}{2}$. This
         inequality can be rewritten as $-\frac{3}{2}c < a_n <
-        \frac{c}{2} < 0$, but we know $a_n \geq 0$. Contradiction.
+        \frac{c}{2} < 0$, but we know $a_n \geq 0$ for all $n$. Contradiction.
       \end{proof}
     \item false.
       $\{n\}$ as a counterexample.
   \end{enumerate}
+\item $\frac{1}{4},\frac{1}{7},\frac{1}{10},\frac{1}{13},\frac{1}{16}$
 \item
   \begin{enumerate}[label=\alph*.]
   \item $1$. The sequence is strictly decreasing, so the first is the
-    greatest.
+    greatest, and it has to be a peak term.
   \item $2$. We can enumerate the range of the sequence:
     $\{-1,1\}$. $1$ is the greatest value it can take, and the first
-    element that's equal to $1$ is the second element of the sequence.
+    element that's equal to $1$ is the second element of the
+    sequence. We also know the first negative element can't be peak
+    term because it's smaller than the second one.
   \item Does not exist. Given any $a_n$, $a_n < a_{2n}$. 
   \item $2$. First, we only consider even-labeled terms, because the
-    odd-numbered ones are always negative. The absolute value of the
+    odd-numbered ones are always negative so they are always smaller
+    than some positive even-labeled terms. The absolute value of the
     sequence is decreasing, so the largest we can pick is the second.
   \end{enumerate}
 \item
@@ -141,25 +148,18 @@
     Apply the fact with $k=n+1$: $a_n \geq a_{n+1}$. $a_n < a_{n+1}$
     as given. Contradiction.
   \end{proof}
-\item Goal: $\forall v \in \mathbb{N}, \forall k \in \mathbb{N}, k
-  \geq n \rightarrow a_k \leq a_n$.
-  \begin{proof}
-    Let $n \in \mathbb{N}$.
+\item
+  Suppose $\{a_n\}$ is monotonically decreasing. 
+  Our goal is to show: $\forall n \in \mathbb{N}, \forall k \in \mathbb{N}, k \geq n
+  \rightarrow a_k \leq a_n$.
 
-    When $k=n$, $a_k = a_n$, and thus $a_k \leq a_n$.
-
-    When $k>n$, suppose the property holds for $k-1$.
-    $a_k \leq a_{k-1}$ since the sequence is monotone decreasing. By
-    inductive hypothesis, $a_{k-1} \leq a_n$. By transitivity of
-    $\leq$, $a_k \leq a_n$.
-  \end{proof}
-
-  The theorem of mathematical induciton only applies for the set of
-  natural numbers. The proof therefore glossed over some details
-  regarding induction. To be more rigorous, one can either prove the
-  generalized induction theorem for
-  the set $[k,\infty) \cap \mathbb{N}$ or rewrite $k$ as $k=n+s$ where
-  $s\geq 0$, and do induction on $s$. 
+  Suppose this statement does not hold. We have an $n$ such that
+  $\exists k \in \mathbb{N} k \geq n \land a_k > a_n$. It is clear
+  that $k > n$ since $k = n$ is impossible with the $a_k > a_n$
+  (otherwise $a_k > a_n$ and $k = n$ would lead to contradiction). We
+  know that $\{a_n\}$ is monotonically decreasing. Given $k > n$, we
+  have $a_k \leq a_n$. However, we just proved that $a_k > a_n$. Contradiction.
+  
 
   
 \item [12.]
@@ -172,13 +172,13 @@
     sequence is monotone and bounded below by
     $\frac{1+\sqrt{1+4c}}{2}$.
 
-    First, we show that the sequence is bounded by
+    First, we show that the sequence is bounded below by
     $\frac{1+\sqrt{1+4c}}{2}$, using induction.
 
     To prove the base case, we need to show that $x_1 < x_2 = \sqrt{c
       + x_1}$. The premiss tells us that $x_1 \geq
     \frac{1+\sqrt{1+4c}}{2}$. We do the following transformations.
-    \begin{equation*}
+    \begin{equation} \label{eq0}
       \begin{split}
         2x_1 &\geq 1+ \sqrt{1+4c}\\
         2x_1 - 1 &\geq \sqrt{1+4c}\\
@@ -188,21 +188,21 @@
         x_1^2 &\geq x_1 + c\\
         x_1 &\geq \sqrt{x_1+c} = x_2
       \end{split}
-    \end{equation*}
+    \end{equation}
     The last step, which takes the square root of both sides, is valid
-    because the premiss guarantees both sides are positive and
+    because the premiss guarantees both sides are positive and the function
     $\lambda x. \sqrt{x}$ preserves order.
 
     For the inductive case, we assume that the $x_n$ is bounded below
     by $\frac{1+\sqrt{1+4c}}{2}$ for some $n \geq 1$. $x_{n+1} =
-    \sqrt{x+x_n} \geq \sqrt{\frac{1+\sqrt{1+4c}+2c}{2}}$, by inductive
-    hypothesis. To prove that $x_n$ is bounded below by that number,
+    \sqrt{c+x_n} \geq \sqrt{c+\frac{1+\sqrt{1+4c}}{2}} = \sqrt{\frac{1+\sqrt{1+4c}+2c}{2}}$, by inductive
+    hypothesis. To prove that $x_{n+1}$ is bounded below by that number,
     we only need to show that $\sqrt{\frac{1+\sqrt{1+4c}+2c}{2}} \geq
     \frac{1+\sqrt{1+4c}}{2}$. Since both sides are positive, it
-    suffices to show the squared version holds. This can be done by
+    suffices to show the equality is preserved when both sides are squared. This can be done by
     subtracting them and show the result is $0$.
 
-    \begin{equation*}
+    \begin{equation} \label{eq1}
       \begin{split}
         (\sqrt{\frac{1+\sqrt{1+4c}+2c}{2}})^2 -
         (\frac{1+\sqrt{1+4c}}{2})^2 &= \frac{1 + \sqrt{1+4c}+2c}{2} -
@@ -211,17 +211,17 @@
         &= \frac{1 + \sqrt{1+4c}+2c}{2} - \frac{1 + \sqrt{1+4c}+2c}{2}\\
         &= 0
       \end{split}
-    \end{equation*}
+    \end{equation}
+
     and hence $x_{n+1} =
     \sqrt{c+x_n} \geq \sqrt{\frac{1+\sqrt{1+4c}+2c}{2}} =
     \frac{1+\sqrt{1+4c}}{2}$
 
     Next, we show that $\{x_n\}$ is monotone decreasing.
     Let $n \geq 1$. The following statements are implicitly connected
-    by $\rightarrow$, and the implication from the first to the second
-    statement uses the fact that the sequence is bounded below, which
+    by $\rightarrow$, and the first statement is directly derived the fact that the sequence is bounded below, which
     we just proved.
-    \begin{equation*}
+    \begin{equation} \label{eq2}
       \begin{split}
         x_{n} &\geq \frac{1+\sqrt{1+4c}}{2}\\
         (2x_{n}-1)^2 &\geq 1 + 4c\\
@@ -230,19 +230,20 @@
         x_{n}^2 &\geq x_{n} + c\\
         x_{n} &\geq \sqrt{x_{n} + c} = x_{n+1}
       \end{split}
-    \end{equation*}
+    \end{equation}
 
     We have proved that the sequence is monotone and bounded (we have
-    only proved the sequence bounded below, but monotone decreasing
-    implies the sequence is bounded). Using the monotone convergence
+    only proved the sequence bounded below, but with monotone decreasing
+    we can conclude the sequence is bounded above as well). Using the monotone convergence
     theorem, we conclude the sequence converges.
 
     To find which number it converges to, we use the equality:
     $x_{n+1} = \sqrt{c + x_n}$
 
     If we think of $\{x_{n+1}\}$ as a subsequence of $\{x_n\}$, they
-    converges to the same number.
-    \begin{equation*}
+    clearly converges to the same number. This fact is actually proved
+    in one of the exercises.
+    \begin{equation*}\label{eq3}
       \begin{split}
         \lim_{n \rightarrow \infty} x_{n} &= \lim_{n \rightarrow \infty}
         x_{n+1}\\
@@ -250,7 +251,7 @@
         &= \sqrt{c + \lim_{n \rightarrow \infty}x_n}
       \end{split}
     \end{equation*}
-    Use the shorthand $x=\lim_{n \rightarrow \infty} x_{n}$. We just
+    Use the shorthand $a=\lim_{n \rightarrow \infty} x_{n}$. We just
     obtained the equation: $a = \sqrt{c + a}$. Solving for $a$, we get
     $a = \frac{1+\sqrt{1+4c}}{2}$. The negative solution can't be the
     limit, because the set $[\frac{1+\sqrt{1+4c}}{2},\infty)$ in which
@@ -259,9 +260,28 @@
     
     
 
-    The case where $x_1 \leq \frac{1+\sqrt{1+4c}}{2}$ is the dual of
-    the case of $\geq$. We simply flip all the order-related stuff,
-    and we get the same solution.
+    The case where $x_1 \leq \frac{1+\sqrt{1+4c}}{2}$ is almost the dual of
+    the case of $\geq$. The proof can be done similarly to the case
+    discussed above, by flipping the directions of order relation. To save
+    space, I'll go over this case briefly.
+
+    Assuming $x_1 \leq \frac{1+\sqrt{1+4c}}{2}$, we want to prove,
+    instead, that $\{x_n\}$ is bounded above by
+    $\frac{1+\sqrt{1+4c}}{2}$ and it's monotone increasing.
+
+    The base case is handled as we did in \ref{eq0}, but have $\geq$
+    flipped to $\leq$.
+
+    We do the same for the inductive case, flipping the direction for
+    the inequality immediately after \ref{eq1}. This works because the
+    subtraction gives $0$.
+
+    Flipping the direction of \ref{eq2}, we prove that the sequence is
+    monotone increasing.
+
+    The part proving the limit is the solution of the equation is the
+    same for both cases.
+    
   \end{proof}
 \end{enumerate}
 
