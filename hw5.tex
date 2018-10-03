@@ -1,0 +1,275 @@
+\documentclass{article}
+\title{HW 5}
+\date{2018/10/02}
+\author{Yiyun Liu}
+\usepackage{proof}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{diagbox}
+\usepackage[a4paper,total={6in,8in}]{geometry}
+% For \mathbb{R} or \mathbb{Q}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{nameref}
+\usepackage{systeme}
+\usepackage{enumitem}
+\usepackage{color}
+% For radio table
+\usepackage{comment}
+% For theorems
+\usepackage{amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+\lstset{basicstyle=\ttfamily}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+
+
+\lstset{ 
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  % numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\section*{Section 2.5}
+\begin{enumerate}
+\item
+  \begin{enumerate}[label=\alph*.]
+  \item false. $[0,1)$ is bounded, but the sequence
+    $\{1-\frac{1}{n}\}$ converges to $1$.
+  \item false. $[0,\infty)$ is closed, but not bounded. We've already
+    proved in a previous assignment that it is indeed closed.
+  \item false. $[0,\infty)$ is closed, but it is not
+    compact. Given $A_i = (-1,i)$. $[0,\infty) \subseteq
+    \bigcup_{i=1}^{\infty} A_i = (-1,\infty)$. Clearly, there doesn't
+    exist a finite subcover with the $A_i$ given.
+  \item false. $(0,1)$ is bounded, but with the cover $A_i =
+    (\frac{1}{i},1)$ there's no finite subcover. This assertion can be easily
+    derived from the Archimedean's Theorem.
+  \item false. $(0,1) \subseteq [0,1]$ but $[0,1]$ is compact and
+    $(0,1)$ is not.
+  \end{enumerate}
+\item [4.]
+  \begin{enumerate}[label=\alph*.]
+  \item false.
+    Let $a_n =
+    \frac{1}{2}\sum_{i=0}^n\frac{1}{i!}$.
+
+    $\lim_{n\rightarrow \infty}a_n = \frac{1}{2}\lim_{n\rightarrow
+      \infty}\sum_{i=0}^n\frac{1}{i!} = \frac{1}{2}e \notin
+    [0,2] \cap \mathbb{Q}$. Every subsequence of this $\{a_n\}$ converges to
+    $\frac{1}{2}e$, which is not in $[0,2] \cap \mathbb{Q}$. The set
+    of rationals is not sequentially compact.
+    in $[0,2]$ 
+  \item
+    \begin{equation*}
+      A_i =
+      \begin{cases}
+        (-1, \sqrt{2} - \frac{1}{n}) & i\text{ odd}\\
+        (\sqrt{2}+ \frac{1}{n}, 3) & i\text{ even}
+      \end{cases}
+    \end{equation*}
+    Clearly, this family of sets covers $[0,2] \cap
+    \mathbb{Q}$. However, there's no finite subcover because rational
+    is dense in real line and there will always be some rational numbers
+    between the odd-labeled sets and even-labeled sets.
+  \item The sequence we $a_n$ we defined in a is a
+    counterexample. It's in the set but converges to $\frac{1}{2}e$
+  \end{enumerate}
+\item [5.]
+  \begin{proof}
+    Suppose $S$ is a singleton.  We can write $S=\{a\}$.
+
+    Let $A_{i\in \mathbb{N}}$ be a family of sets such that
+    $\{a\} \subseteq \bigcup_{i=1}^{\infty}A_i$. Therefore,
+    $a \in \bigcup_{i=1}^{\infty}A_i$. By definition of the infinite
+    union, $a \in A_k$ for some $k \in \mathbb{N}$. It is obvious that
+    $x \in A_k \subseteq \bigcup_{i=1}^{k}A_i$. We have found a finite
+    subcover.
+  \end{proof}
+\item [7.]
+  \begin{description}
+  \item[$A \cup B$]
+    \begin{proof}
+      Suppose $J_{i \in \mathbb{N}}$ covers $A \cup B$. By some
+      theorem in set theorem, we have $J_{i \in \mathbb{N}}$ covers
+      $A$ and $B$.
+
+      Since $A$ and $B$ are compact, there exist natural numbers $k_1$
+      and $k_2$ such that $A \subseteq \bigcup_{i=1}^{k_1}J_i$ and $B
+      \subseteq \bigcup_{i=1}^{k_2}J_i$. Let $k=\max(k_1,k_2)$,
+      $\bigcup_{i=1}^{k}J_i$ covers both $A$ and $B$ and is finite.
+    \end{proof}
+  \item[$A \cap B$]
+    \begin{proof}
+      This one is more involved than the union case. We apply the
+      theorem proved in textbook, and prove the equivalent close and
+      bounded property.
+
+      Since $A$ and $B$ are compact, they are both closed and
+      bounded. We want to show $A \cap B$ is closed and bounded as
+      well.
+
+      Let $M$ be a bound of $A$, $M$ is clearly a bound of $A \cap
+      B$ because the latter is a subset of $A$. $A \cap B$ is bounded.
+
+      Let $\{c_n\}$ be an arbitrary sequence in $A \cap B$ that
+      converges to $c$. $\{c_n\}$ must be in $A$ and $B$ as well. We
+      know that $A$ and $B$ are closed, so $c \in A$  and $c \in
+      B$. $c \in A \cap B$. $A \cap B$ is closed.
+
+      $A \cap B$ is closed and bounded. Apply Theorem 2.42, $A \cap B$
+      is compact. 
+    \end{proof}
+  \end{description}
+  
+
+\end{enumerate}
+
+\section*{Section 3.1}
+\begin{enumerate}
+\item
+  \begin{enumerate}[label=\alph*.]
+  \item false.
+    \begin{equation*}
+      f(x) =
+      \begin{cases}
+        1 & x < 0 \\
+        -1 & x \geq 0
+      \end{cases}
+    \end{equation*}
+    \begin{equation*}
+      g(x) =
+      \begin{cases}
+        -1 & x < 0 \\
+        1 & x \geq 0
+      \end{cases}
+    \end{equation*}
+    $(f+g)(x) = 0$ is continuous, but neither $g$ nor $f$ is
+    continuous.
+  \item Use the same $f$ defined in a. $f^2(x) = 1$ is continuous but
+    $f$ is not.
+  \item Let $c \in \mathbb{R}$, and $\{a_n\}$ be any sequence that
+    converges to $c$.
+
+    With the premiss given, we have $\{f(a_n) + g(a_n)\} = \{(f+g)
+    (a_n)\} \rightarrow (f+g)(c) = f(c) + g(c)$, and $\{f(a_n)
+    \rightarrow f(c)\}$.
+
+    By exercise 1.b in section 2.1, $\{g(a_n)\} \rightarrow (f(c) +
+    g(c)) - f(c) = g(c)$. The abuse of notation can make this proof
+    inconvincing, but once you desugar the notations everything would
+    look obvoius.
+  \item true.
+    \begin{proof}
+      \begin{lemma}
+        If $\{a_n\}$ is in $\mathbb{N}$ and $\{a_n\} \rightarrow k$,
+        $k \in \mathbb{N}$. Or, concisely, $\mathbb{N}$ is closed.
+      \end{lemma}
+      \begin{proof}
+        I'll just give a rather heuristic proof. Suppose it converges
+        to something that's not a natural number, we can always find
+        an $\epsilon$-neighborhood of that number which contains no
+        natural number at all. This leads to a contradiction.
+      \end{proof}
+
+    \begin{lemma}
+      If $\{a_n\}$ is in $\mathbb{N}$ and converges to $k$, there
+      exists $N$ such that $a_n = k$ for all $n \geq N$.  for
+      $n \geq N$
+    \end{lemma}
+    \begin{proof}
+      This is also quite obvious. We've already proved $k$ is a
+      natural number. Choose $\epsilon$ to be $1$, there's will be a
+      corresponding $N$ value. There is no integer in $(k-1,k)$ and
+      $(k,k+1)$, so when $n \geq N$, all $a_n$ equals $k$.
+    \end{proof}
+
+    Just realized the first lemma is redundant while typesetting
+    :(
+
+    Let $k \in \mathbb{N}$, and $\{a_n\}$ be any sequence in $\mathbb{N}$ that
+    converges to $k$.
+
+    By the second lemma we just proved, $\exists N$ such that $a_n =
+    k$ for all $n \geq N$. Therefore, we have $f(a_n)=f(k)$ for all $n
+    \geq N$. For any $\epsilon>0$, we always pick this $N$, as
+    $f(a_n)$ will always belongs to the singleton set $\{f(k)\}$ which
+    is a proper subset of any $\epsilon$-neighborhood of $f(k)$.
+  \end{proof}
+    
+  \end{enumerate}
+\item Continuous only at $[0,1)$ and $(1,2]$.
+  \begin{proof}
+    Let $a \in [0,1)$, and $\{a_n\}$ in $[0,2]$, $\{a_n\}\rightarrow
+    a$. We consider only $N$ that restricts $a_n$ between $[0,1)$. The
+    $N$ can be constructed by picking $\epsilon = \frac{1-a}{2}$ and
+    use the fact that $a_n$ converges to $a$. With
+    $n \geq N$, we have $a_n \in [0,1)$ and thus
+    $\{f(a_n)\} = \{11\} \rightarrow 11 = f(a)$. It is obvious that
+    the $N$ we just constructed works for any $\epsilon$, since it's
+    always just a constant. The logic is sound because  what we
+    just proved is something of the form $\exists N \forall \epsilon
+    P(\epsilon, N)$, which implies $\forall \epsilon \exists N
+    P(\epsilon, N)$.
+    Continuous at
+    $[0,1)$.
+
+    Let $a \in (1,2]$, $\{a_n\}$ in $[0,2]$, and $\{a_n\}\rightarrow
+    a$.
+    Let $\epsilon > 0$. Again, we pick the $N$ that constrains $a_n$
+    in $(1,2]$, this time applying the fact of convergence with $\epsilon
+    = \frac{a-1}{2}$ (this epsilon is the epsilon we use to apply the
+    theorem, not to be confused with the arbitrary epsilon we
+    introduced to the environment). For the arbitrarily chosen
+    $\epsilon$, there exists $N'$ such that $a_n$ is within the
+    $\epsilon$-neighborhood of $a$. Let $N'' = \max(N,N')$. When $n
+    \geq N''$, we have $f(a_n) = a_n$ because $a_n$ in $(1,2]$, and
+    $\{a_n\}$ in the $\epsilon$-neighborhood of $a$ because of the $N'$ we just
+    chose. Therefore, 
+    $\{f(a_n)\}= \{a_n\}$ is within the $\epsilon$-neighborhood of $a$
+    as well, when $n \geq N''$. Continuous at
+    $(1,2]$.
+
+    Let $a_n = 1 + (-1)^n \frac{1}{n}$. Clearly, $a_n$ is in
+    $[0,2]$ and converges to $1 \in [0,2]$. But $\{f(a_n)\}$
+    doesn't converge becaues $f(a_n)$ is  ``oscillating'' between $1$ and $11$. 
+
+  \end{proof}
+\end{enumerate}
+
+
+\end{document}
