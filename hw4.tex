@@ -1,0 +1,254 @@
+\documentclass{article}
+\title{HW 4}
+\date{2018/10/03}
+\author{Yiyun Liu}
+\usepackage{proof}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{diagbox}
+\usepackage[a4paper,total={6in,8in}]{geometry}
+% For \mathbb{R} or \mathbb{Q}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{nameref}
+\usepackage{systeme}
+\usepackage{enumitem}
+\usepackage{color}
+% For radio table
+\usepackage{comment}
+% For theorems
+\usepackage{amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+\lstset{basicstyle=\ttfamily}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+
+
+\lstset{ 
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  % numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\section*{Ex 8}
+\begin{itemize}
+\item [24.] This is isomorphic to the Klein four-group: $\mathbb{Z}_2 \times \mathbb{Z}_2$. We've shown in the first midterm that it has four elements, and it is clearly not cyclic. Since there are only two groups of order $2$, we know it has to be the non-cyclic one. An isomorphism contains the following mappings:
+  id $\rightarrow (0,0)$, rotate 180 degress $\rightarrow (0,1)$, vertical flip $\rightarrow (1,1)$, horizontal flip $\rightarrow (1,0)$. 
+\item [46.]
+  Because $n \geq 3$, $
+  \begin{pmatrix}
+    1 & 2
+  \end{pmatrix}
+$ and $
+\begin{pmatrix}
+  1 & 2 & 3
+\end{pmatrix}
+$ are elements of $S_n$. However,
+$
+\begin{pmatrix}
+  1 & 2
+\end{pmatrix}
+\begin{pmatrix}
+  1 & 2 & 3
+\end{pmatrix} =
+\begin{pmatrix}
+  2 & 3
+\end{pmatrix}
+\neq
+\begin{pmatrix}
+  1 & 3
+\end{pmatrix}
+=
+\begin{pmatrix}
+  1 & 2 & 3
+\end{pmatrix}
+\begin{pmatrix}
+  1 & 2
+\end{pmatrix}
+$. Therefore, $S_n$ is not abelian when $n \geq 3$.
+\end{itemize}
+
+\section*{Ex 9}
+\begin{itemize}
+\item [11.]
+  \begin{equation*}
+    \begin{pmatrix}
+      1 & 3 &  4
+    \end{pmatrix}
+    \begin{pmatrix}
+      2 & 6
+    \end{pmatrix}
+    \begin{pmatrix}
+      5 & 8 & 7
+    \end{pmatrix}
+  \end{equation*}
+  \begin{equation*}
+    \begin{pmatrix}
+      1 & 4
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 3
+    \end{pmatrix}
+    \begin{pmatrix}
+      2 & 6
+    \end{pmatrix}
+    \begin{pmatrix}
+      5 & 7
+    \end{pmatrix}
+    \begin{pmatrix}
+      5 & 8
+    \end{pmatrix}
+  \end{equation*}
+\item [13.]
+  \begin{enumerate}[label=\alph*.]
+  \item 4
+    
+  \item A cycle of size $n$ has order $n$. I define size as the number of
+    entries within the parentheses. 
+  \item $6$,$4$. Computed by taking the least common multiple of the
+    size of each disjoint cycle.
+  \item
+    \begin{itemize}
+    \item [10.]
+      \begin{equation*}
+        \begin{pmatrix}
+          1 & 8
+        \end{pmatrix}
+        \begin{pmatrix}
+          3 & 6 & 4
+        \end{pmatrix}
+        \begin{pmatrix}
+          5 & 7
+        \end{pmatrix}
+      \end{equation*}
+      Least common multiple: 6.
+    \item [11.]
+      \begin{equation*}
+        \begin{pmatrix}
+          1 & 3 & 4
+        \end{pmatrix}
+        \begin{pmatrix}
+          2 & 6
+        \end{pmatrix}
+        \begin{pmatrix}
+          5 & 8 & 7
+        \end{pmatrix}
+      \end{equation*}
+      Least common multiple: 6.
+    \item [12.]
+      \begin{equation*}
+        \begin{pmatrix}
+          1 & 3 & 4 & 7 & 8 & 6 & 5 & 2
+        \end{pmatrix}
+      \end{equation*}
+      This is kind of degenerate. The least common multiple of a
+      single number is just itself, in this case: 8. Or we can just
+      use part b.
+    \end{itemize}
+
+  \item Given a finite permutation written in the form of multiplication of
+    disjoint cycles, the order of the permutation is equal to the
+    least common multiple of the sizes of cycles. 
+  \end{enumerate}
+\item [23.]
+  \begin{itemize}
+  \item [a.] false. $
+    \begin{pmatrix}
+      1 & 2
+    \end{pmatrix}
+    \begin{pmatrix}
+      3 & 4
+    \end{pmatrix}
+    $ in $S_4$ can't be written as a cycle.
+  \item [i.] true. If we fix 1 element in $S_8$, we are effectively
+    permuting only $7$ elements.
+  \end{itemize}
+\item [27.]
+  \begin{enumerate}[label=\alph*.]
+  \item
+    \begin{proof}
+      Let's start with cycles first.  We know from the textbook that a
+      cycle $
+      \begin{pmatrix}
+        a_1 & a_2 &\ldots &a_k
+      \end{pmatrix}
+      $ can be written as
+      $ \underbrace{ \begin{pmatrix} a_1 & a_k \end{pmatrix}
+        \ldots \begin{pmatrix} a_1 & a_2 \end{pmatrix}}_{k-1}$.  We
+      also know that every permutation in $S_n$ can be written as
+      multiplications of disjoint cycles. Since the cycles are
+      disjoint, the total size of the cycles must be less than or
+      equal to $n$.
+
+      Let $\tau$ be an arbitrary permutation in $S_n$. We write $\tau$
+      in the form of $k$ disjoint cycles, and let
+      $m=n_1 + n_2 + \ldots + n_k$ be the total size of the cycles,
+      where $n_i$ denotes the size of the $i$th cycle. $m \leq n$ as
+      discussed above. The $i$th cycle can be further written as
+      multiplication $n_i - 1$ transpositions. After rewriting, we get
+      $(n_1 -1) + \ldots + (n_k -1) = (n_1 + \ldots n_k) - k = m - k$
+      transpositions. When $k=0$, the permutation is identity, so we
+      can say it's a product of $0$ transpositions. When $k > 0$,
+      $m - k < m \leq n$. $m - k < n \rightarrow m - k \leq n -1$.
+
+      We've written $\tau$ as multiplication of no more than $n-1$
+      transpositions. 
+    \end{proof}
+  \item
+    \begin{proof}
+      Continue the proof above. When the permutation is not cyclic, we
+      have $k >1$. $m - k < m - 1 \leq n -1$. $m - k < n -1
+      \rightarrow m - k \leq n -2$. Remember $m-k$ is the number of
+      transpositions after rewriting the permutation into
+      multiplication of transpositions. 
+    \end{proof}
+\end{enumerate}
+
+\end{itemize}
+
+\section*{Ex 10}
+\begin{itemize}
+\item [4.]
+  $\{0,4,8\}$,$\{1,5,9\}$,$\{2,6,10\}$,$\{3,7,11\}$
+\item [6.]
+  Basically copying down the two columns and removing the duplicates:
+  $\{\rho_0,\mu_2\}$, $\{\rho_1,\delta_2\}$,$\{\rho_2,\mu_1\}$,$\{\rho_3,\delta_1\}$
+\end{itemize}
+
+
+
+\end{document}
